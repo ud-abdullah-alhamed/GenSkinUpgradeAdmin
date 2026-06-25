@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenSkin Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+    
+    <div class="app-container">
+
+        <aside class="sidebar">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <div class="logo-text">Genskin</div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-item active" onclick="showView('dashboard')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                    </svg>
+                    Dashboard
+                </div>
+                <div class="nav-item" onclick="showView('orders')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    Orders
+                </div>
+                <div class="nav-item" onclick="showView('customers')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    Customers
+                </div>
+                <div class="nav-item" onclick="showView('analytics')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    Analytics
+                </div>
+                <div class="nav-item" onclick="showView('delivery')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                    Delivery
+                </div>
+                <div class="nav-item" onclick="showView('brands')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                    </svg>
+                    Brands
+                </div>
+                <div class="nav-item" onclick="showView('products')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    Products
+                </div>
+                <div class="nav-item" onclick="showView('product-test')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    product test
+                </div>
+                <div class="nav-item" onclick="showView('categories')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                    </svg>
+                    Categories
+                </div>
+                <div class="nav-item" onclick="showView('discount-codes')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 7h.01M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                    </svg>
+                    Discount Codes
+                </div>
+                <div class="nav-item" onclick="showView('clincinfo')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    Clinic Info
+                </div>
+                <div class="nav-item" onclick="showView('ads')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                    </svg>
+                    Ads
+                </div>
+                <div class="nav-item" onclick="showView('support-service')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    Support Service
+                </div>
+                <div class="nav-item" onclick="showView('settings')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Settings
+                </div>
+            </nav>
+
+            <div class="nav-footer">
+                <div class="nav-item" onclick="logout()">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    Logout
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div id="signin-view" class="view auth-page">
+                <div class="auth-container">
+                    <div class="auth-left">
+                        <div class="auth-logo">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
+                            </svg>
+                            <span>Genskin</span>
+                        </div>
+                        <h2 class="auth-title">Welcome back</h2>
+                        <p class="auth-subtitle">Sign in to your admin dashboard</p>
+                        <div class="auth-badge">Admin panel access only</div>
+
+                        <form id="signin-form" class="auth-form">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" id="signin-email" class="form-input" placeholder="john@company.com"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <label class="form-label">Password</label>
+                                </div>
+                                <input type="password" id="signin-password" class="form-input" placeholder="••••••••"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="remember-me">
+                                    <span>Remember me</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                        </form>
+
+                    </div>
+                    <div class="auth-right">
+                        <img src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg"
+                            alt="Login illustration">
+                    </div>
+                </div>
+            </div>
+
+            <div id="signup-view" class="view auth-page" style="display: none;">
+                <div class="auth-container">
+                    <div class="auth-left">
+                        <div class="auth-logo">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
+                            </svg>
+                            <span>Genskin</span>
+                        </div>
+                        <h2 class="auth-title">Create your account</h2>
+                        <p class="auth-subtitle">Get started with Genskin admin panel</p>
+
+                        <form id="signup-form" class="auth-form">
+                            <div class="form-group">
+                                <label class="form-label">Full name</label>
+                                <input type="text" id="signup-name" class="form-input" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" id="signup-email" class="form-input" placeholder="john@company.com"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="password" id="signup-password" class="form-input" placeholder="••••••••"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Confirm password</label>
+                                <input type="password" id="signup-confirm-password" class="form-input"
+                                    placeholder="••••••••" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Role</label>
+                                <select id="signup-role" class="form-select" required>
+                                    <option value="">Select your role</option>
+                                    <option value="admin">Administrator</option>
+                                    <option value="manager">Manager</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Create account</button>
+                        </form>
+
+                    </div>
+                    <div class="auth-right">
+                        <img src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7965.jpg"
+                            alt="Signup illustration">
+                    </div>
+                </div>
+            </div>
+
+            <div id="dashboard-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <h1 class="page-title">Dashboard</h1>
+                        <div id="dashboard-discount-actions" style="display: flex; gap: 1rem;">
+                            <button class="btn btn-primary" onclick="openApplyDiscountModal()">Add Discount</button>
+                            <button class="btn btn-outline" onclick="openClearDiscountModal()">Clear Discount</button>
+                        </div>
+                    </div>
+                    <p class="page-subtitle">Welcome back! Here's an overview of your system</p>
+
+                    <div class="stats-grid" id="dashboard-status-cards"></div>
+
+                    <div class="table-card">
+                        <div class="table-header">
+                            <div class="table-title">Recent orders</div>
+                            <div class="table-actions">
+                                <button class="btn btn-outline" onclick="loadDashboardData()" title="Refresh data">🔄
+                                    Refresh</button>
+                                <select class="form-select" id="dashboard-status-filter" onchange="loadDashboardData()">
+                                    <option value="">All statuses</option>
+                                </select>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportOrders(state.filteredOrders || state.orders, 'pdf')">PDF</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportOrders(state.filteredOrders || state.orders, 'excel')">Excel</button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ORDER ID</th>
+                                        <th>CUSTOMER</th>
+                                        <th>DATE</th>
+                                        <th>STATUS</th>
+                                        <th>AMOUNT</th>
+                                        <th>DISCOUNTED</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashboard-orders-tbody">
+                                    <tr>
+                                        <td colspan="7" style="text-align: center; padding: 2rem;">No data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="orders-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Orders</h1>
+                    <p class="page-subtitle">View and manage all delivery orders</p>
+
+                    <div class="table-card">
+                        <div class="table-header">
+                            <div class="table-title">All orders</div>
+                            <div class="table-actions">
+                                <button class="btn btn-outline" onclick="loadOrdersData()" title="Refresh">🔄</button>
+                                <input type="date" id="orders-from-date" class="form-input" title="From Date"
+                                    style="max-width: 150px;">
+                                <input type="date" id="orders-to-date" class="form-input" title="To Date"
+                                    style="max-width: 150px;">
+                                <select id="orders-status-filter" class="form-select" style="max-width: 150px;">
+                                    <option value="">All Statuses</option>
+                                </select>
+                                <input type="text" id="orders-search" class="form-input" placeholder="Search orders..."
+                                    style="max-width: 200px;">
+                                <button class="btn btn-outline" onclick="applyOrderFilters()">Apply Filters</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportOrders(state.filteredOrders || state.orders, 'pdf')">PDF</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportOrders(state.filteredOrders || state.orders, 'excel')">Excel</button>
+                        
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ORDER ID</th>
+                                        <th>CUSTOMER</th>
+                                        <th>DATE</th>
+                                        <th>STATUS</th>
+                                        <th>AMOUNT</th>
+                                        <th>DISCOUNTED</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orders-tbody">
+                                    <tr>
+                                        <td colspan="7" style="text-align: center; padding: 2rem;">No data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="customers-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Customers</h1>
+                    <p class="page-subtitle">Manage your customer base</p>
+
+                    <div class="table-card">
+                        <div class="table-header">
+                            <div class="table-title">All Customers</div>
+                            <div class="table-actions">
+                                <button class="btn btn-outline" onclick="loadCustomers()" title="Refresh">🔄</button>
+                                <input type="date" id="customers-from-date" class="form-input" title="From Date"
+                                    style="max-width: 140px;">
+                                <input type="date" id="customers-to-date" class="form-input" title="To Date"
+                                    style="max-width: 140px;">
+                                <input type="text" id="customers-search" class="form-input"
+                                    placeholder="Search customers..." style="max-width: 200px;">
+                                <button class="btn btn-outline" onclick="applyCustomerFilters()">Apply</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportCustomers(state.filteredCustomers || state.customers, 'pdf')">PDF</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportCustomers(state.filteredCustomers || state.customers, 'excel')">Excel</button>
+                                <button class="btn btn-primary" onclick="openModal('customer-modal')">+ Add
+                                    Customer</button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>CUSTOMER</th>
+                                        <th>EMAIL</th>
+                                        <th>PHONE</th>
+                                        <th>ORDERS</th>
+                                        <th>TOTAL SPENT</th>
+                                        <th>JOINED</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="customers-tbody">
+                                    <tr>
+                                        <td colspan="7" style="text-align: center; padding: 2rem;">No data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="analytics-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Analytics</h1>
+                    <p class="page-subtitle">Track your business performance</p>
+
+                    <div class="stats-grid">
+                        <div class="stats-card">
+                            <div class="stats-header">
+                                <div class="stats-title">Total revenue</div>
+                            </div>
+                            <div class="stats-value" id="analytics-revenue">JOD 0</div>
+                            <div class="stats-change">Based on all orders</div>
+                        </div>
+                        <div class="stats-card">
+                            <div class="stats-header">
+                                <div class="stats-title">Total orders</div>
+                            </div>
+                            <div class="stats-value" id="analytics-orders">0</div>
+                            <div class="stats-change">Includes all statuses</div>
+                        </div>
+                        <div class="stats-card">
+                            <div class="stats-header">
+                                <div class="stats-title">Customers</div>
+                            </div>
+                            <div class="stats-value" id="analytics-customers">0</div>
+                            <div class="stats-change">Unique customers</div>
+                        </div>
+                    <div class="stats-card">
+                        <div class="stats-header">
+                            <div class="stats-title">Avg. order value</div>
+                        </div>
+                        <div class="stats-value" id="analytics-avg">JOD 0</div>
+                        <div class="stats-change">Average per order</div>
+                    </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 mb-xl">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <div>
+                                    <div class="chart-title">Sales Trend</div>
+                                    <div class="chart-subtitle">Monthly revenue</div>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="sales-trend-chart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <div>
+                                    <div class="chart-title">Orders by Status</div>
+                                    <div class="chart-subtitle">Current distribution</div>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="orders-status-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <div>
+                                <div class="chart-title">Weekly Revenue</div>
+                                <div class="chart-subtitle">Last 4 weeks performance</div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="weekly-revenue-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="delivery-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Delivery</h1>
+                    <p class="page-subtitle">Manage delivery information and tracking</p>
+
+                    <div class="table-card">
+                        <div class="table-header">
+                            <div class="table-title">All Deliveries</div>
+                            <div class="table-actions">
+                                <button class="btn btn-outline" onclick="loadDelivery()" title="Refresh">🔄</button>
+                                <input type="date" id="delivery-from-date" class="form-input" title="From Date"
+                                    style="max-width: 140px;">
+                                <input type="date" id="delivery-to-date" class="form-input" title="To Date"
+                                    style="max-width: 140px;">
+                                <select id="delivery-status-filter" class="form-select" style="max-width: 140px;">
+                                    <option value="">All Statuses</option>
+                                </select>
+                                <input type="text" id="delivery-search" class="form-input"
+                                    placeholder="Search deliveries..." style="max-width: 180px;">
+                                <button class="btn btn-outline" onclick="applyDeliveryFilters()">Apply</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportDeliveries(state.filteredDelivery || state.delivery, 'pdf')">PDF</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportDeliveries(state.filteredDelivery || state.delivery, 'excel')">Excel</button>
+                                <button class="btn btn-primary" onclick="openModal('delivery-modal')">+ Add
+                                    Delivery</button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>DRUG STORE</th>
+                                        <th>MAIN AREA</th>
+                                        <th>MIN ORDER (MAIN / OTHER)</th>
+                                        <th>FEES (MAIN / OTHER)</th>
+                                        <th>MAIN OPTION</th>
+                                        <th>NOTES</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="delivery-tbody">
+                                    <tr>
+                                        <td colspan="8" style="text-align: center; padding: 2rem;">No data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="brands-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Brands</h1>
+                    <p class="page-subtitle">Manage product brands</p>
+
+                    <div class="table-card">
+                        <div class="table-header">
+                            <div class="table-title">All Brands</div>
+                            <div class="table-actions">
+                                <div class="input-group" style="margin-right: 1rem;">
+                                    <input type="text" id="brand-search-id" class="form-input" placeholder="Search by ID" style="width: 150px;">
+                                    <button class="btn btn-outline" onclick="searchBrand()">🔍</button>
+                                </div>
+                                <button class="btn btn-outline" onclick="loadBrands()" title="Refresh">🔄</button>
+                                <button class="btn btn-primary" onclick="addBrand()">+ Add Brand</button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>NAME</th>
+                                        <th>DRUG STORE</th>
+                                        <th>COUNTRY</th>
+                                        <th>OFFER AVAIL.</th>
+                                        <th>OFFER %</th>
+                                        <th>AVG PRICE</th>
+                                        <th>TOTAL PRODUCTS</th>
+                                        <th>EST. YEAR</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="brands-tbody">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; padding: 2rem;">No data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="products-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Products & Categories</h1>
+                    <p class="page-subtitle">Manage your products organized by categories</p>
+
+                    <div class="action-bar"
+                        style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                        <button class="btn btn-outline" onclick="loadProducts()" title="Refresh">🔄</button>
+                        <select id="products-category-filter" class="form-select" style="max-width: 180px;">
+                            <option value="">All Categories</option>
+                        </select>
+                        <input type="text" id="products-search" class="form-input" placeholder="Search products..."
+                            style="max-width: 200px;">
+                        <button class="btn btn-outline" onclick="applyProductFilters()">Apply</button>
+                        <button class="btn btn-outline"
+                            onclick="ExportUtils.exportProducts(state.filteredProducts || state.products, 'pdf')">PDF</button>
+                        <button class="btn btn-outline"
+                            onclick="ExportUtils.exportProducts(state.filteredProducts || state.products, 'excel')">Excel</button>
+                        <button class="btn btn-outline" onclick="document.getElementById('excel-upload-input').click()">Upload Excel</button>
+                        <input type="file" id="excel-upload-input" style="display: none;" accept=".xlsx, .xls" onchange="handleExcelUpload(event)">
+                        <div style="flex: 1;"></div>
+                        <button class="btn btn-primary" onclick="addProduct()">+ Add Product</button>
+                    </div>
+
+                    <div id="products-container">
+                        <div style="text-align: center; padding: 3rem; color: var(--gray-500);">No data available
+                            categories...</div>
+                    </div>
+                    <div id="products-container-pagination" class="pagination-container"></div>
+                </div>
+            </div>
+
+            <div id="product-test-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Product Test & Categories</h1>
+                    <p class="page-subtitle">Manage your products organized by categories</p>
+
+                    <div class="action-bar"
+                        style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                        <button class="btn btn-outline" onclick="loadProductTest()" title="Refresh">🔄</button>
+                        <select id="product-test-category-filter" class="form-select" style="max-width: 180px;">
+                            <option value="">All Categories</option>
+                        </select>
+                        <input type="text" id="product-test-search" class="form-input" placeholder="Search products..."
+                            style="max-width: 200px;">
+                        <button class="btn btn-outline" onclick="applyProductTestFilters()">Apply</button>
+                        <button class="btn btn-outline"
+                            onclick="ExportUtils.exportProductTest(state.productTestFilteredProducts || state.productTestProducts, 'pdf')">PDF</button>
+                        <button class="btn btn-outline"
+                            onclick="ExportUtils.exportProductTest(state.productTestFilteredProducts || state.productTestProducts, 'excel')">Excel</button>
+                        <button class="btn btn-outline" onclick="document.getElementById('product-test-excel-upload-input').click()">Upload Excel</button>
+                        <input type="file" id="product-test-excel-upload-input" style="display: none;" accept=".xlsx, .xls" onchange="handleExcelUpload(event)">
+                        <div style="flex: 1;"></div>
+                        <button class="pt-action-btn pt-action-btn--primary" onclick="addProductTest()">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7H5" />
+                            </svg>
+                            Add Product
+                        </button>
+                    </div>
+
+                    <div id="product-test-container">
+                        <div style="text-align: center; padding: 3rem; color: var(--gray-500);">No data available
+                            categories...</div>
+                    </div>
+                    <div id="product-test-container-pagination" class="pagination-container"></div>
+                </div>
+            </div>
+
+            <div id="categories-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Categories</h1>
+                    <p class="page-subtitle">Manage product categories</p>
+
+                    <div class="action-bar"
+                        style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                        <button class="btn btn-outline" onclick="loadCategoriesPage()" title="Refresh">🔄</button>
+                        <input type="text" id="categories-search" class="form-input" placeholder="Search categories..."
+                            style="max-width: 200px;" onkeyup="applyCategoryFilters()">
+                        <div style="flex: 1;"></div>
+                        <button class="btn btn-primary" onclick="addCategory()">+ Add Category</button>
+                    </div>
+
+                    <div id="categories-container">
+                        <div style="text-align: center; padding: 3rem; color: var(--gray-500);">No data available</div>
+                    </div>
+                    <div id="categories-container-pagination" class="pagination-container"></div>
+                </div>
+            </div>
+
+            <div id="discount-codes-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Discount Codes</h1>
+                    <p class="page-subtitle">Manage promotional discount codes</p>
+
+                    <div class="table-card">
+                        <div class="table-header">
+                            <div class="table-title">All Discount Codes</div>
+                            <div class="table-actions">
+                                <button class="btn btn-outline" onclick="loadDiscounts()" title="Refresh">🔄</button>
+                                <input type="text" id="discount-search" class="form-input" placeholder="Search codes..."
+                                    style="max-width: 180px;">
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportDiscountCodes(state.filteredDiscountCodes || state.discountCodes, 'pdf')">PDF</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportDiscountCodes(state.filteredDiscountCodes || state.discountCodes, 'excel')">Excel</button>
+                                <button class="btn btn-primary" onclick="openModal('discount-modal')">+ Add
+                                    Code</button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>CODE</th>
+                                        <th>DISCOUNT (%)</th>
+                                        <th>EXPIRY DATE</th>
+                                        <th>TIMES USED</th>
+                                        <th>STATUS</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="discount-tbody">
+                                    <tr>
+                                        <td colspan="6" style="text-align: center; padding: 2rem;">No data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="clincinfo-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Clinic Info</h1>
+                    <p class="page-subtitle">Manage clinic information and details</p>
+
+                    <div class="table-card">
+                        <div class="table-header">
+                            <div class="table-title">All Clinic Information</div>
+                            <div class="table-actions">
+                                <button class="btn btn-outline" onclick="loadClinic()" title="Refresh">🔄</button>
+                                <button class="btn btn-outline" onclick="viewAllClinicInfo()">View All Data</button>
+                                <input type="text" id="clincinfo-search" class="form-input"
+                                    placeholder="Search clinic info..." style="max-width: 300px;">
+                                <button class="btn btn-primary" onclick="openModal('clincinfo-modal')">+ Add Clinic
+                                    Info</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportClinicInfo(state.filteredClinic || state.clinic, 'pdf')">PDF</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportClinicInfo(state.filteredClinic || state.clinic, 'excel')">Excel</button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>CLINIC NAME</th>
+                                        <th>ADDRESS</th>
+                                        <th>PHONE</th>
+                                        <th>EMAIL</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="clincinfo-tbody">
+                                    <tr>
+                                        <td colspan="6" style="text-align: center; padding: 2rem;">No data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ads-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Ads Management</h1>
+                    <p class="page-subtitle">Manage advertisements and banners</p>
+                    <div class="table-card">
+                        <div class="table-header">
+                            <div class="table-title">All Ads</div>
+                            <div class="table-actions">
+                                <button class="btn btn-outline" onclick="loadAds()" title="Refresh">🔄</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportAds(state.ads, 'pdf')">PDF</button>
+                                <button class="btn btn-outline"
+                                    onclick="ExportUtils.exportAds(state.ads, 'excel')">Excel</button>
+                                 <button class="btn btn-primary" onclick="openModal('ads-modal')">+ Add Ad</button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>TITLE</th>
+                                        <th>IMAGE</th>
+                                        <th>STATUS</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ads-tbody">
+                                    <tr><td colspan="5" style="text-align:center">No data available</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="support-service-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Support Service</h1>
+                    <p class="page-subtitle">Manage support services</p>
+
+                    <div class="table-card">
+                        <div class="table-header">
+                            <div class="table-title">All Support Services</div>
+                            <div class="table-actions">
+                                <button class="btn btn-outline" onclick="loadSupportService()" title="Refresh">🔄</button>
+                                <input type="text" id="support-search" class="form-input" placeholder="Search by ID..." style="max-width: 200px;">
+                                <button class="btn btn-outline" onclick="searchSupportService()">Search</button>
+                                <button class="btn btn-primary" onclick="openModal('support-service-modal')">+ Add New</button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>TITLE</th>
+                                        <th>DESCRIPTION</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="support-service-tbody">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; padding: 2rem;">No data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="settings-view" class="view">
+                <header class="content-header">
+                    <div class="user-profile">
+                        <div class="user-avatar">Ab</div>
+                        <div class="user-info">
+                            <div class="user-name">Ab</div>
+                            <div class="user-role">Admin</div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <h1 class="page-title">Settings</h1>
+                    <p class="page-subtitle">Manage your account and application preferences</p>
+
+                    <div class="settings-container">
+                        <div class="settings-tabs">
+                            <div class="settings-tab active" onclick="switchSettingsTab('general')">
+                                <span>👤</span> General
+                            </div>
+                            <div class="settings-tab" onclick="switchSettingsTab('notifications')">
+                                <span>🔔</span> Notifications
+                            </div>
+                            <div class="settings-tab" onclick="switchSettingsTab('security')">
+                                <span>🔒</span> Security
+                            </div>
+                        </div>
+
+                        <div id="general-tab" class="settings-tab-content active">
+                            <h3>Company Information</h3>
+                            <form id="settings-form">
+                                <div class="form-group">
+                                    <label class="form-label" for="settings-company">Company Name</label>
+                                    <input type="text" id="settings-company" class="form-input" value="Genskin">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="settings-email">Email Address</label>
+                                    <input type="email" id="settings-email" class="form-input"
+                                        value="admin@genskin.com">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="settings-phone">Phone Number</label>
+                                    <input type="tel" id="settings-phone" class="form-input" value="+1 (555) 123-4567">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="settings-address">Business Address</label>
+                                    <input type="text" id="settings-address" class="form-input"
+                                        value="123 Business St, New York, NY 10001">
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="notifications-tab" class="settings-tab-content">
+                            <h3>Notifications</h3>
+                            <div class="settings-option">
+                                <div>
+                                    <div class="settings-option-title">Email notifications</div>
+                                    <div class="settings-option-description">Receive emails about new orders and system
+                                        updates.</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="settings-notify-email" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="security-tab" class="settings-tab-content">
+                            <h3>Security</h3>
+                            <div class="settings-option">
+                                <div>
+                                    <div class="settings-option-title">Two-factor authentication</div>
+                                    <div class="settings-option-description">Add extra security to your account at sign
+                                        in.</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="settings-2fa">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal" id="ads-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="ads-modal-title">Add New Ad</h3>
+            </div>
+            <form id="ads-form">
+                <input type="hidden" id="ads-id">
+                <div class="form-group">
+                    <label class="form-label">Title</label>
+                    <input type="text" id="ads-title" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea id="ads-description" class="form-input" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Upload Image</label>
+                    <div style="display:flex; gap:10px; align-items:center; margin-bottom:5px;">
+                        <input type="hidden" id="ads-image" required>
+                        <input type="file" id="ads-image-upload" accept="image/*" style="display:none;" onchange="handleAdImageUpload(this)">
+                        <button type="button" class="btn btn-outline" onclick="document.getElementById('ads-image-upload').click()">Upload Image</button>
+                    </div>
+                    <img id="ads-image-preview" src="" style="max-width: 120px; max-height: 120px; display: none; margin-top: 5px; border: 1px solid #ddd; padding: 2px; border-radius: 4px;">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Link</label>
+                    <input type="text" id="ads-link" class="form-input">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('ads-modal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Ad</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+
+
+    <div class="modal" id="order-details-modal">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h3 class="modal-title" style="margin:0;">Order Details</h3>
+            <button onclick="closeModal('order-details-modal')" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+        </div>
+        <div id="order-details-content" style="max-height: 70vh; overflow-y: auto;">
+        </div>
+        <div class="form-actions" style="margin-top:20px;">
+            <button class="btn btn-outline" onclick="closeModal('order-details-modal')">Close</button>
+        </div>
+    </div>
+
+    <div class="modal" id="delivery-details-modal">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h3 class="modal-title" style="margin:0;">Delivery Details</h3>
+            <button onclick="closeModal('delivery-details-modal')" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+        </div>
+        <div id="delivery-details-content" style="max-height: 70vh; overflow-y: auto;">
+        </div>
+        <div class="form-actions" style="margin-top:20px;">
+            <button class="btn btn-outline" onclick="closeModal('delivery-details-modal')">Close</button>
+        </div>
+    </div>
+
+    <div class="modal" id="order-modal">
+        <h3 id="order-modal-title">New Order</h3>
+        <form id="order-form">
+            <input type="hidden" id="order-id">
+            <div class="form-group">
+                <label class="form-label">Customer Name</label>
+                <input type="text" id="order-customer" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Amount (JOD)</label>
+                <input type="number" id="order-amount" class="form-input" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Status</label>
+                <select id="order-status" class="form-select" required disabled></select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Vendor Status</label>
+                <select id="order-vendor-status" class="form-select" disabled></select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Date</label>
+                <input type="date" id="order-date" class="form-input" required>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('order-modal')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Order</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="customer-modal">
+        <h3 id="customer-modal-title">New Customer</h3>
+        <form id="customer-form">
+            <input type="hidden" id="customer-id">
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" id="customer-name" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" id="customer-email" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="tel" id="customer-phone" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Joined Date</label>
+                <input type="date" id="customer-joined" class="form-input" required>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('customer-modal')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Customer</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="brand-modal">
+        <h3 id="brand-modal-title">New Brand</h3>
+        <form id="brand-form">
+            <input type="hidden" id="brand-id">
+            <div class="form-group">
+                <label class="form-label">Brand Name</label>
+                <input type="text" id="brand-name" class="form-input" required>
+            </div>
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <label class="form-label">Country (EN)</label>
+                    <input type="text" id="brand-country" class="form-input" placeholder="Country of Origin">
+                </div>
+                <div>
+                    <label class="form-label">Country (AR)</label>
+                    <input type="text" id="brand-country-ar" class="form-input" placeholder="بلد المنشأ">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Drug Store</label>
+                <input type="hidden" id="brand-drugstore">
+                <div id="brand-drugstore-select" class="multi-select" data-input="brand-drugstore" data-placeholder="Select Drug Stores">
+                    <div class="multi-select-trigger">Select Drug Stores</div>
+                    <div class="multi-select-menu">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <label class="form-label">Delivery Terms (EN)</label>
+                    <input type="text" id="brand-delivery-terms" class="form-input">
+                </div>
+                <div>
+                    <label class="form-label">Delivery Terms (AR)</label>
+                    <input type="text" id="brand-delivery-terms-ar" class="form-input">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Ads Info</label>
+                <input type="text" id="brand-ads" class="form-input">
+            </div>
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <label class="form-label">Year Established</label>
+                    <input type="number" id="brand-year" class="form-input">
+                </div>
+                <div>
+                    <label class="form-label">Offer Percentage</label>
+                    <input type="number" id="brand-offer-pct" class="form-input" step="0.1">
+                </div>
+            </div>
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <label class="form-label">Avg Product Price</label>
+                    <input type="number" id="brand-avg-price" class="form-input" step="0.01">
+                </div>
+                <div>
+                    <label class="form-label">Total Products</label>
+                    <input type="number" id="brand-total-products" class="form-input">
+                </div>
+            </div>
+            <div class="form-group" style="display: flex; align-items: center; padding-top: 0.5rem;">
+                <label style="display: flex; align-items: center; cursor: pointer;">
+                    <input type="checkbox" id="brand-offer-avail" style="margin-right: 8px;">
+                    Offer Available
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Website</label>
+                <input type="url" id="brand-website" class="form-input" placeholder="https://example.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Logo Image</label>
+                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 5px;">
+                    <input type="hidden" id="brand-logo" onchange="updateBrandImagePreview(this.value)">
+                    <input type="file" id="brand-image-upload" accept="image/*" style="display: none;" onchange="handleBrandImageUpload(this)">
+                    <button type="button" class="btn btn-outline" onclick="document.getElementById('brand-image-upload').click()">Upload Logo</button>
+                </div>
+                <img id="brand-image-preview" src="" style="max-width: 100px; max-height: 100px; display: none; margin-top: 5px; border: 1px solid #ddd; padding: 2px; border-radius: 4px;">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Cover Image</label>
+                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 5px;">
+                    <input type="hidden" id="brand-cover" onchange="updateBrandCoverImagePreview(this.value)">
+                    <input type="file" id="brand-cover-upload" accept="image/*" style="display: none;" onchange="handleBrandCoverImageUpload(this)">
+                    <button type="button" class="btn btn-outline" onclick="document.getElementById('brand-cover-upload').click()">Upload Cover</button>
+                </div>
+                <img id="brand-cover-preview" src="" style="max-width: 200px; max-height: 100px; display: none; margin-top: 5px; border: 1px solid #ddd; padding: 2px; border-radius: 4px;">
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('brand-modal')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Brand</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="brand-details-modal">
+        <h3 id="brand-details-title">Brand Details</h3>
+        <div id="brand-details-content" style="padding: 1rem 0;">
+            <!-- Details loaded here -->
+        </div>
+        <div class="form-actions">
+            <button type="button" class="btn btn-primary" onclick="closeModal('brand-details-modal')">Close</button>
+        </div>
+    </div>
+
+    <div class="modal" id="product-modal">
+        <h3 id="product-modal-title">New Product</h3>
+        <form id="product-form">
+            <input type="hidden" id="product-id">
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Product Name (AR)</label>
+                    <input type="text" id="product-name-ar" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Product Name (EN)</label>
+                    <input type="text" id="product-name" class="form-input" required>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Brand Name</label>
+                    <input type="hidden" id="product-brand-name">
+                    <div id="product-brand-name-select" class="multi-select" data-input="product-brand-name" data-placeholder="Select or type brand..." data-display="search" data-single="true" data-can-add="true">
+                        <div class="multi-select-trigger-container">
+                            <div class="multi-select-chips"></div>
+                            <div class="multi-select-add-btn">+</div>
+                        </div>
+                        <div class="multi-select-menu"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Brand Country</label>
+                    <input type="text" id="product-brand-country" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Categories</label>
+                <input type="hidden" id="product-category">
+                <div id="product-category-select" class="multi-select" data-input="product-category" data-placeholder="Select Category">
+                    <button type="button" class="multi-select-trigger">Select Category</button>
+                    <div class="multi-select-menu"></div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Gender Suitability (EN)</label>
+                    <input type="hidden" id="product-gender">
+                    <div id="product-gender-select" class="multi-select" data-input="product-gender" data-placeholder="Choose one or more">
+                        <button type="button" class="multi-select-trigger">Choose one or more</button>
+                        <div class="multi-select-menu"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Gender Suitability (AR)</label>
+                    <input type="text" id="product-gender-ar" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Skin Type</label>
+                <input type="hidden" id="product-skin-type">
+                <div id="product-skin-type-select" class="multi-select" data-input="product-skin-type" data-placeholder="Select Skin Type">
+                    <button type="button" class="multi-select-trigger">Select Skin Type</button>
+                    <div class="multi-select-menu"></div>
+                </div>
+            </div>
+
+
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Drug Store</label>
+                    <input type="hidden" id="product-drugstore">
+                    <div id="product-drugstore-select" class="multi-select" data-input="product-drugstore" data-placeholder="Select Drug Store" data-display="chips">
+                        <div class="multi-select-trigger-container">
+                            <div class="multi-select-chips"></div>
+                            <div class="multi-select-add-btn">+</div>
+                        </div>
+                        <div class="multi-select-menu"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Pregnancy Lactation</label>
+                    <select id="product-pregnancy-lactation" class="form-select">
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Dosage Form (AR)</label>
+                    <input type="text" id="product-dosage-ar" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Dosage Form (EN)</label>
+                    <input type="text" id="product-dosage" class="form-input">
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Description (AR)</label>
+                    <textarea id="product-description-ar" class="form-input" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description (EN)</label>
+                    <textarea id="product-description" class="form-input" rows="2"></textarea>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">How To Use (AR)</label>
+                    <textarea id="product-how-to-use-ar" class="form-input" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">How To Use (EN)</label>
+                    <textarea id="product-how-to-use" class="form-input" rows="2"></textarea>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Key Active Ingredient (AR)</label>
+                    <input type="text" id="product-active-ingredient-ar" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Key Active Ingredient (EN)</label>
+                    <input type="text" id="product-active-ingredient" class="form-input">
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Free From (AR)</label>
+                    <input type="text" id="product-free-from-ar" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Free From (EN)</label>
+                    <input type="text" id="product-free-from" class="form-input">
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Price (JOD)</label>
+                    <input type="number" id="product-price" class="form-input" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Price Range</label>
+                    <select id="product-price-range" class="form-select">
+                        <option value="">Select Range</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Stock</label>
+                    <select id="product-stock-status" class="form-select">
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Barcode</label>
+                    <input type="text" id="product-barcode" class="form-input">
+                </div>
+                 <div class="form-group">
+                    <label class="form-label">Product Type</label>
+                    <input type="hidden" id="product-type">
+                    <div id="product-type-select" class="multi-select" data-input="product-type" data-placeholder="Select Product Type" data-display="chips">
+                        <div class="multi-select-trigger-container">
+                            <div class="multi-select-chips"></div>
+                            <div class="multi-select-add-btn">+</div>
+                        </div>
+                        <div class="multi-select-menu"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Time</label>
+                <input type="hidden" id="product-time">
+                <div id="product-time-select" class="multi-select" data-input="product-time" data-placeholder="Select Time">
+                    <div class="multi-select-trigger">Select Time</div>
+                    <div class="multi-select-menu">
+                        <label class="multi-select-option"><input type="checkbox" value="AM"><span>AM</span></label>
+                        <label class="multi-select-option"><input type="checkbox" value="PM"><span>PM</span></label>
+                        <label class="multi-select-option"><input type="checkbox" value="Weekly"><span>Weekly</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Size</label>
+                    <input type="text" id="product-size" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">INCI</label>
+                    <input type="text" id="product-inci" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Upload Image</label>
+                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 5px;">
+                    <input type="hidden" id="product-image" onchange="updateImagePreview(this.value)">
+                    <input type="file" id="product-image-upload" accept="image/*" style="display: none;" onchange="handleProductImageUpload(this)">
+                    <button type="button" class="btn btn-outline" onclick="document.getElementById('product-image-upload').click()">Upload Image</button>
+                </div>
+                <img id="product-image-preview" class="image-preview" src="" alt="Product image preview" style="display: none; margin-top: 5px;">
+            </div>
+
+            <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="checkbox" id="product-is-offer" style="width: auto;">
+                <label for="product-is-offer" style="margin: 0; cursor: pointer;">Is Offer?</label>
+            </div>
+
+            <div id="offer-price-container" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Offer Price (JOD)</label>
+                    <input type="number" id="product-offer-price" class="form-input" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Percentage Before Offer (%)</label>
+                    <input type="number" id="product-percentage-before-offer" class="form-input" placeholder="e.g. 20">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('product-modal')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Product</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="product-test-modal" style="max-width: min(920px, 96vw); width: 100%;">
+        <h3 id="product-test-modal-title" style="margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 600; color: var(--gray-900);">Product Detail</h3>
+        <form id="product-test-form">
+            <input type="hidden" id="product-test-id">
+            
+            <!-- Row 1: Product Name AR & EN -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg></span>
+                    Product Name
+                </div>
+                <div class="pt-detail-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div>
+                        <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">ARABIC</label>
+                        <input type="text" id="product-test-name-ar" class="form-input" required placeholder="اسم المنتج">
+                    </div>
+                    <div>
+                        <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">ENGLISH</label>
+                        <input type="text" id="product-test-name" class="form-input" required placeholder="Product Name">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pt-separator">
+
+            <!-- Row 2: Brand & Country -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></span>
+                    Brand Info
+                </div>
+                <div class="pt-detail-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div>
+                        <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">BRAND NAME</label>
+                        <input type="hidden" id="product-test-brand-name">
+                        <div id="product-test-brand-name-select" class="multi-select" data-input="product-test-brand-name" data-placeholder="Select or type brand..." data-display="search" data-single="true" data-can-add="true">
+                            <div class="multi-select-trigger-container">
+                                <div class="multi-select-chips"></div>
+                                <div class="multi-select-add-btn">+</div>
+                            </div>
+                            <div class="multi-select-menu"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">COUNTRY</label>
+                        <input type="text" id="product-test-brand-country" class="form-input" placeholder="Origin Country">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pt-separator">
+
+            <!-- Row 3: Categories -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2h-3a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2H6a2 2 0 01-2-2v-3zM14 16a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2h-3a2 2 0 01-2-2v-3z"/></svg></span>
+                    Categories
+                </div>
+                <div class="pt-detail-content">
+                    <div class="pt-category-list">
+                        <div class="pt-category-item">
+                            <input type="hidden" id="product-test-category">
+                            <div id="product-test-category-select" class="multi-select" data-input="product-test-category" data-placeholder="Select Categories" data-display="chips">
+                                <div class="multi-select-trigger-container">
+                                    <div class="multi-select-chips"></div>
+                                    <div class="multi-select-add-btn">+</div>
+                                </div>
+                                <div class="multi-select-menu"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pt-separator">
+
+            <!-- Row 4: Drug Store Card -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></span>
+                    Drug Store
+                </div>
+                <div class="pt-detail-content">
+                    <div class="pt-card">
+                        <input type="hidden" id="product-test-drugstore">
+                        <div id="product-test-drugstore-select" class="multi-select" data-input="product-test-drugstore" data-placeholder="Select Drug Stores" data-display="chips">
+                            <div class="multi-select-trigger-container">
+                                <div class="multi-select-chips"></div>
+                                <div class="multi-select-add-btn">+</div>
+                            </div>
+                            <div class="multi-select-menu"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pt-separator">
+
+            <!-- Row 5: Gender & Skin Type & Pregnancy -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg></span>
+                    Suitability
+                </div>
+                <div class="pt-detail-content">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1rem;">
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">GENDER (EN)</label>
+                            <input type="hidden" id="product-test-gender">
+                            <div id="product-test-gender-select" class="multi-select" data-input="product-test-gender" data-placeholder="Select Gender" data-display="chips">
+                                <div class="multi-select-trigger-container">
+                                    <div class="multi-select-chips"></div>
+                                    <div class="multi-select-add-btn">+</div>
+                                </div>
+                                <div class="multi-select-menu"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">GENDER (AR)</label>
+                            <input type="text" id="product-test-gender-ar" class="form-input" placeholder="الجنس">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">SKIN TYPE</label>
+                            <input type="hidden" id="product-test-skin-type">
+                            <div id="product-test-skin-type-select" class="multi-select" data-input="product-test-skin-type" data-placeholder="Select Skin Type" data-display="chips">
+                                <div class="multi-select-trigger-container">
+                                    <div class="multi-select-chips"></div>
+                                    <div class="multi-select-add-btn">+</div>
+                                </div>
+                                <div class="multi-select-menu"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">PREGNANCY & LACTATION</label>
+                            <select id="product-test-pregnancy-lactation" class="form-select">
+                                <option value="">Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pt-separator">
+
+            <!-- Row 5.5: Size & INCI & Dosage -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg></span>
+                    Product Specs
+                </div>
+                <div class="pt-detail-content">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1rem;">
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">SIZE</label>
+                            <input type="text" id="product-test-size" class="form-input" placeholder="e.g. 50ml">
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">INCI</label>
+                            <textarea id="product-test-inci" class="form-input" rows="2" placeholder="Ingredients List"></textarea>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">DOSAGE FORM (EN)</label>
+                            <input type="text" id="product-test-dosage" class="form-input" placeholder="Dosage Form">
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">DOSAGE FORM (AR)</label>
+                            <input type="text" id="product-test-dosage-ar" class="form-input" placeholder="شكل الجرعة">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pt-separator">
+
+            <!-- Row 5.6: Descriptions -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg></span>
+                    Descriptions
+                </div>
+                <div class="pt-detail-content">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1rem;">
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">DESCRIPTION (EN)</label>
+                            <textarea id="product-test-description" class="form-input" rows="2"></textarea>
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">DESCRIPTION (AR)</label>
+                            <textarea id="product-test-description-ar" class="form-input" rows="2"></textarea>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">HOW TO USE (EN)</label>
+                            <textarea id="product-test-how-to-use" class="form-input" rows="2"></textarea>
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">HOW TO USE (AR)</label>
+                            <textarea id="product-test-how-to-use-ar" class="form-input" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pt-separator">
+
+            <!-- Row 5.7: Ingredients -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.183.12l-1.867.934m16.428-10.856l-1.867.934a2 2 0 01-1.183.12l-1.931-.386a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517l-2.387-.477a2 2 0 00-1.022.547l-1.867.934"/></svg></span>
+                    Ingredients
+                </div>
+                <div class="pt-detail-content">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1rem;">
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">ACTIVE INGREDIENT (EN)</label>
+                            <input type="text" id="product-test-active-ingredient" class="form-input">
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">ACTIVE INGREDIENT (AR)</label>
+                            <input type="text" id="product-test-active-ingredient-ar" class="form-input">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">FREE FROM (EN)</label>
+                            <input type="text" id="product-test-free-from" class="form-input">
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">FREE FROM (AR)</label>
+                            <input type="text" id="product-test-free-from-ar" class="form-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pt-separator">
+
+            <!-- Row 6: Pricing & Stock -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                    Pricing
+                </div>
+                <div class="pt-detail-content" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                    <div class="pt-value-box" style="flex-direction: column; align-items: flex-start; padding: 8px 12px;">
+                        <span style="font-size: 10px; color: var(--gray-400); margin-bottom: 2px;">PRICE (JOD)</span>
+                        <input type="number" id="product-test-price" step="0.01" required placeholder="0.00">
+                    </div>
+                    <div class="pt-value-box" style="flex-direction: column; align-items: flex-start; padding: 8px 12px;">
+                        <span style="font-size: 10px; color: var(--gray-400); margin-bottom: 2px;">RANGE</span>
+                        <select id="product-test-price-range" style="border: none; background: transparent; width: 100%; outline: none; font-size: 14px; color: var(--gray-900); padding: 0;">
+                            <option value="">Select Range</option>
+                        </select>
+                    </div>
+                    <div class="pt-value-box" style="flex-direction: column; align-items: flex-start; padding: 8px 12px;">
+                        <span style="font-size: 10px; color: var(--gray-400); margin-bottom: 2px;">STOCK</span>
+                        <select id="product-test-stock-status" style="border: none; background: transparent; width: 100%; outline: none; font-size: 14px; color: var(--gray-900); padding: 0;">
+                            <option value="true">Available</option>
+                            <option value="false">Out of Stock</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pt-separator">
+
+            <!-- Row 7: Barcode & Type -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg></span>
+                    Identification
+                </div>
+                <div class="pt-detail-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="pt-value-box">
+                        <input type="text" id="product-test-barcode" placeholder="Barcode Number">
+                    </div>
+                    <div class="pt-value-box" style="padding: 0; border: none;">
+                        <input type="hidden" id="product-test-type">
+                        <div id="product-test-type-select" class="multi-select" data-input="product-test-type" data-placeholder="Select Product Type" data-display="chips" style="width: 100%;">
+                            <div class="multi-select-trigger-container" style="border-radius: 14px;">
+                                <div class="multi-select-chips"></div>
+                                <div class="multi-select-add-btn">+</div>
+                            </div>
+                            <div class="multi-select-menu"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pt-separator">
+
+            <!-- Row 8: Time Selection -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+                    Usage Time
+                </div>
+                <div class="pt-detail-content">
+                    <input type="hidden" id="product-test-time">
+                    <div id="product-test-time-select" class="multi-select" data-input="product-test-time" data-placeholder="Select Time" data-display="chips">
+                        <div class="multi-select-trigger-container">
+                            <div class="multi-select-chips"></div>
+                            <div class="multi-select-add-btn">+</div>
+                        </div>
+                        <div class="multi-select-menu">
+                            <label class="multi-select-option"><input type="checkbox" value="AM"><span>AM</span></label>
+                            <label class="multi-select-option"><input type="checkbox" value="PM"><span>PM</span></label>
+                            <label class="multi-select-option"><input type="checkbox" value="Weekly"><span>Weekly</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pt-separator">
+
+            <!-- Row 9: Image Upload & Offer -->
+            <div class="pt-detail-row">
+                <div class="pt-detail-label">
+                    <span class="pt-label-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></span>
+                    Product Media
+                </div>
+                <div class="pt-detail-content">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 1.5rem;">
+                        <input type="hidden" id="product-test-image" onchange="updateProductTestImagePreview(this.value)">
+                        <input type="file" id="product-test-image-upload" accept="image/*" style="display: none;" onchange="handleProductTestImageUpload(this)">
+                        <button type="button" class="btn btn-outline" onclick="document.getElementById('product-test-image-upload').click()" style="border-radius: 12px; height: 44px; padding: 0 20px;">
+                            Choose Image
+                        </button>
+                        <div id="product-test-image-preview-container" style="border: 1px solid var(--gray-200); border-radius: 12px; padding: 4px; display: none;">
+                            <img id="product-test-image-preview" src="" style="height: 44px; border-radius: 8px; object-fit: cover;">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 0.75rem; padding: 12px 0; border-top: 1px solid var(--gray-100);">
+                        <input type="checkbox" id="product-test-is-offer" style="width: 20px; height: 20px; cursor: pointer;" onchange="document.getElementById('product-test-offer-price-container').style.display = this.checked ? 'block' : 'none'">
+                        <label for="product-test-is-offer" style="margin: 0; cursor: pointer; font-weight: 500; color: var(--gray-700);">Is Offer?</label>
+                    </div>
+
+                    <div id="product-test-offer-price-container" style="display: none; border: 1px solid #dbeafe; background: #eff6ff; padding: 1.25rem; border-radius: 14px; margin-top: 10px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div>
+                                <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">OFFER PRICE (JOD)</label>
+                                <input type="number" id="product-test-offer-price" class="form-input" step="0.01" placeholder="0.00">
+                            </div>
+                            <div>
+                                <label class="form-label" style="font-size: 11px; color: var(--gray-400); margin-bottom: 4px; display: block;">PERCENTAGE (%)</label>
+                                <input type="number" id="product-test-percentage-before-offer" class="form-input" placeholder="e.g. 20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer" style="padding-top: 2rem; border-top: 1px solid var(--gray-100); margin-top: 2rem; display: flex; justify-content: flex-end; gap: 1rem;">
+                <button type="button" class="btn btn-outline" onclick="closeModal('product-test-modal')" style="border-radius: 12px; padding: 12px 24px;">Cancel</button>
+                <button type="submit" class="btn btn-primary" style="border-radius: 12px; padding: 12px 24px; background: var(--brand-blue);">Save Product</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="category-modal">
+        <h3 id="category-modal-title">New Category</h3>
+        <form id="category-form">
+            <input type="hidden" id="category-id">
+            <div class="form-group">
+                <label class="form-label">Category Name (EN)</label>
+                <input type="text" id="category-name-en" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Category Name (AR)</label>
+                <input type="text" id="category-name-ar" class="form-input" required>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Filter Category (EN)</label>
+                    <input type="text" id="category-filter-en" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Filter Category (AR)</label>
+                    <input type="text" id="category-filter-ar" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem; margin: 1rem 0;">
+                <input type="checkbox" id="category-trading-now" style="width: auto;">
+                <label for="category-trading-now" style="margin: 0; cursor: pointer;">Trading Now</label>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Icon Photo</label>
+                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 5px;">
+                    <input type="hidden" id="category-icon-photo" onchange="updateImagePreviewGeneric(this.value, 'category-icon-preview')">
+                    <input type="file" id="category-icon-upload" accept="image/*" style="display: none;" onchange="handleGenericImageUpload(this, 'category-icon-photo', 'category-icon-preview')">
+                    <button type="button" class="btn btn-outline" onclick="document.getElementById('category-icon-upload').click()">Upload Icon</button>
+                </div>
+                <img id="category-icon-preview" src="" style="max-width: 60px; max-height: 60px; display: none; margin-top: 5px; border: 1px solid #ddd; padding: 2px; border-radius: 4px;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Cover Photo</label>
+                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 5px;">
+                    <input type="hidden" id="category-cover-photo" onchange="updateImagePreviewGeneric(this.value, 'category-cover-preview')">
+                    <input type="file" id="category-cover-upload" accept="image/*" style="display: none;" onchange="handleGenericImageUpload(this, 'category-cover-photo', 'category-cover-preview')">
+                    <button type="button" class="btn btn-outline" onclick="document.getElementById('category-cover-upload').click()">Upload Cover</button>
+                </div>
+                <img id="category-cover-preview" src="" style="max-width: 100px; max-height: 100px; display: none; margin-top: 5px; border: 1px solid #ddd; padding: 2px; border-radius: 4px;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Description</label>
+                <textarea id="category-description" class="form-input" rows="2"></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('category-modal')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Category</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="discount-modal">
+        <h3 id="discount-modal-title">New Discount Code</h3>
+        <form id="discount-form">
+            <input type="hidden" id="discount-id">
+            <div class="form-group">
+                <label class="form-label">Code</label>
+                <input type="text" id="discount-code" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Discount (%)</label>
+                <input type="number" id="discount-percentage" class="form-input" min="0" max="100" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Expiry Date</label>
+                <input type="date" id="discount-expiry" class="form-input" min="">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Is Active</label>
+                <select id="discount-active" class="form-select">
+                    <option value="true" selected>true</option>
+                    <option value="false">false</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('discount-modal')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Code</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="clincinfo-modal">
+        <h3 id="clincinfo-modal-title">New Clinic Info</h3>
+        <form id="clincinfo-form">
+            <input type="hidden" id="clincinfo-id">
+            
+            <div class="form-group">
+                <label class="form-label">Upload Image</label>
+                <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 5px;">
+                    <input type="hidden" id="clincinfo-image" onchange="updateClinicImagePreview(this.value)">
+                    <input type="file" id="clincinfo-image-upload" accept="image/*" style="display: none;" onchange="handleClinicImageUpload(this)">
+                    <button type="button" class="btn btn-outline" onclick="document.getElementById('clincinfo-image-upload').click()">Upload Image</button>
+                    <button type="button" class="btn btn-outline" id="clincinfo-image-delete-btn" onclick="deleteClinicImageFromEdit()" style="display:none;color:#EF4444">Delete Image</button>
+                </div>
+                <img id="clincinfo-image-preview" src="" style="max-width: 100px; max-height: 100px; display: none; margin-top: 5px; border: 1px solid #ddd; padding: 2px; border-radius: 4px;">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Clinic Name</label>
+                <input type="text" id="clincinfo-name" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Description</label>
+                <textarea id="clincinfo-description" class="form-input" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Address</label>
+                <textarea id="clincinfo-address" class="form-input" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="tel" id="clincinfo-phone" class="form-input">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" id="clincinfo-email" class="form-input">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Website</label>
+                <input type="url" id="clincinfo-website" class="form-input">
+            </div>
+            
+            <!-- Container for dynamic fields -->
+            <div id="clincinfo-dynamic-fields"></div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('clincinfo-modal')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Clinic Info</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="delivery-modal">
+        <h3 id="delivery-modal-title">Delivery Settings</h3>
+        <form id="delivery-form">
+            <input type="hidden" id="delivery-id">
+            <div class="form-group">
+                <label class="form-label">Drug Store</label>
+                <input type="text" id="delivery-drugstore" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Main Area</label>
+                <input type="text" id="delivery-main-area" class="form-input">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Main Minimum Order</label>
+                <input type="text" id="delivery-main-min-order" class="form-input">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Other Areas Minimum Order</label>
+                <input type="text" id="delivery-other-min-order" class="form-input">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Main Delivery Fees</label>
+                <input type="text" id="delivery-main-fees" class="form-input">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Other Areas Delivery Fees</label>
+                <input type="text" id="delivery-other-fees" class="form-input">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Main Delivery Option</label>
+                <textarea id="delivery-main-option" class="form-input" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Other Areas Delivery Option</label>
+                <textarea id="delivery-other-option" class="form-input" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Delivery Option Notes</label>
+                <textarea id="delivery-option-notes" class="form-input" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Terms of Service</label>
+                <textarea id="delivery-tos" class="form-input" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Terms of Service (Arabic)</label>
+                <textarea id="delivery-tos-ar" class="form-input" rows="4" dir="rtl"></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('delivery-modal')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="support-service-modal">
+        <h3 id="support-service-modal-title">New Support Service</h3>
+        <form id="support-service-form" onsubmit="event.preventDefault(); handleSupportServiceSubmit(event)">
+            <input type="hidden" id="support-service-id">
+            <div class="form-group">
+                <label class="form-label">Title</label>
+                <input type="text" id="support-service-title" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Description</label>
+                <textarea id="support-service-description" class="form-input" rows="4"></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('support-service-modal')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="data-modal">
+        <h3 id="data-modal-title">Details</h3>
+        <div id="data-modal-content" style="max-height: 70vh; overflow-y: auto;"></div>
+        <div class="form-actions">
+            <button type="button" class="btn btn-primary" onclick="closeModal('data-modal')">Close</button>
+        </div>
+    </div>
+
+    <div class="modal" id="apply-discount-modal">
+        <h3 id="apply-discount-modal-title">Add Discount by Brand</h3>
+        <form id="apply-discount-form">
+            <div class="form-group">
+                <label class="form-label">Brand Name</label>
+                <select id="apply-discount-brand-name" class="form-select" required>
+                    <option value="">Select a brand</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Discount Percentage (%)</label>
+                <input type="number" id="apply-discount-brand-percentage" class="form-input" min="0" max="100" required>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('apply-discount-modal')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Apply Discount</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="clear-discount-modal">
+        <h3 id="clear-discount-modal-title">Clear Discount by Brand</h3>
+        <form id="clear-discount-form">
+            <div class="form-group">
+                <label class="form-label">Brand Name</label>
+                <select id="clear-discount-brand-name" class="form-select" required>
+                    <option value="">Select a brand</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal('clear-discount-modal')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Clear Discount</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="confirm-modal">
+        <h3 id="confirm-modal-title">Confirm Action</h3>
+        <p id="confirm-modal-message">Are you sure you want to perform this action?</p>
+        <div class="form-actions">
+            <button type="button" class="btn btn-outline" onclick="closeModal('confirm-modal')">Cancel</button>
+            <button type="button" class="btn btn-primary" id="confirm-modal-btn">Confirm</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+
+    <script>
+        (function() {
+            const BACKEND = '166.1.227.102:7011';
+
+            const originalFetch = window.fetch;
+            window.fetch = function(url, options) {
+                if (typeof url === 'string' && url.includes(BACKEND) && !url.includes('/api')) {
+                    url = url.replace(BACKEND, BACKEND + '/api');
+                    console.log('🔧 Auto-fixed API URL:', url);
+                }
+                return originalFetch(url, options);
+            };
+
+            if (window.axios) {
+                const originalCreate = axios.create;
+                axios.create = function(config) {
+                    if (config && config.baseURL && config.baseURL.includes(BACKEND) && !config.baseURL.includes('/api')) {
+                        config.baseURL = config.baseURL.replace(BACKEND, BACKEND + '/api');
+                        console.log('🔧 Auto-fixed Axios BaseURL:', config.baseURL);
+                    }
+                    return originalCreate.call(axios, config);
+                };
+
+                axios.interceptors.request.use(config => {
+                    if (config.url && config.url.includes(BACKEND) && !config.url.includes('/api')) {
+                        config.url = config.url.replace(BACKEND, BACKEND + '/api');
+                    }
+                    return config;
+                });
+            }
+        })();
+    </script>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="utils/export.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+        window.addEventListener('load', async () => {
+            const isProxyHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+            const isFile = window.location.protocol === 'file:';
+            const TEST_URL = isFile
+                ? 'http://localhost:3001/api/ClinicInfo'
+                : (isProxyHost ? '/api/ClinicInfo' : 'https://166.1.227.102:7011/api/ClinicInfo');
+            
+            try {
+                await fetch(TEST_URL, { method: 'GET' });
+            } catch (error) {
+                console.warn('Backend connectivity check failed:', error);
+                
+                let isCors = false;
+                try { await fetch(TEST_URL, { mode: 'no-cors' }); isCors = true; } catch(e){}
+
+                const title = isCors ? '⚠️ CORS Policy Error' : '⚠️ Connection Blocked';
+                const msg = isCors ? 'The browser is blocking the request because of CORS policy. You need to enable CORS on the backend or use a proxy/extension.' : 'The browser is blocking requests to the backend API. This is likely due to the self-signed SSL certificate.';
+
+                const banner = document.createElement('div');
+                banner.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: white; border-left: 5px solid #ef4444; padding: 20px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 99999; max-width: 400px; font-family: system-ui, sans-serif; animation: slideUp 0.5s ease-out;';
+                banner.innerHTML = `
+                    <h3 style="margin: 0 0 8px; color: #ef4444; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                        <span>⚠️</span> ${title}
+                    </h3>
+                    <p style="margin: 0 0 16px; color: #374151; font-size: 14px; line-height: 1.5;">
+                        ${msg}
+                    </p>
+                    <div style="display: flex; gap: 12px;">
+                        <a href="fix-ssl.html" target="_blank" style="background: #ef4444; color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; flex: 1; text-align: center;">Fix Connection</a>
+                        <button onclick="this.closest('div').parentElement.remove()" style="background: #f3f4f6; border: none; color: #4b5563; padding: 8px 16px; border-radius: 6px; font-size: 14px; cursor: pointer;">Dismiss</button>
+                    </div>
+                `;
+                
+                const style = document.createElement('style');
+                style.textContent = '@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }';
+                document.head.appendChild(style);
+                document.body.appendChild(banner);
+            }
+        });
+    </script>
+</body>
+
+</html>

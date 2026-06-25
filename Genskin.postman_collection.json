@@ -1,0 +1,450 @@
+﻿{
+	"info": {
+		"_postman_id": "e4741600-f574-4a15-adfc-7fecda932d61",
+		"name": "Genskin",
+		"description": "Collection for login and getting orders count by status",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50370892",
+		"_collection_link": "https://ksjxixi-2579234.postman.co/workspace/Mohammed-AbuKhadija's-Workspace~bfdca154-f162-475a-812e-f1550a3af5e5/collection/50370892-e4741600-f574-4a15-adfc-7fecda932d61?action=share&source=collection_link&creator=50370892"
+	},
+	"item": [
+		{
+			"name": "Log in",
+			"item": [
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"Admin@admin.com\",\n  \"password\": \"admin@123\"\n}"
+						},
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/User/login",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"User",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dashboard",
+			"item": [
+				{
+					"name": "Get Orders Count By Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/OrderStatus/GetOrdersCountByStatus",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"OrderStatus",
+								"GetOrdersCountByStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/Cart/orders/status",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"Cart",
+								"orders",
+								"status"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://166.1.227.102:7011/api/Cart/orders/status' \\\r\n  -H 'accept: */*'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "date filtered",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/Cart/filtered?fromDate=2025-11-17",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"Cart",
+								"filtered"
+							],
+							"query": [
+								{
+									"key": "fromDate",
+									"value": "2025-11-17"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://166.1.227.102:7011/api/Cart/filtered?fromDate=2025-11-17' \\\r\n  -H 'accept: */*'"
+					},
+					"response": []
+				},
+				{
+					"name": "https://166.1.227.102:7011/api/OrderStatus",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/OrderStatus",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"OrderStatus"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://166.1.227.102:7011/api/OrderStatus' \\\r\n  -H 'accept: */*'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "user filtered",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/User/users-summary-Filtered",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"User",
+								"users-summary-Filtered"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://166.1.227.102:7011/api/User/users-summary-Filtered' \\\r\n  -H 'accept: */*'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Analytics",
+			"item": [
+				{
+					"name": "general",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/Cart/orders/general",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"Cart",
+								"orders",
+								"general"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://166.1.227.102:7011/api/Cart/orders/general' \\\r\n  -H 'accept: */*'"
+					},
+					"response": []
+				},
+				{
+					"name": "monthly sale",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/Cart/orders/monthly-sales",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"Cart",
+								"orders",
+								"monthly-sales"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://166.1.227.102:7011/api/Cart/orders/monthly-sales' \\\r\n  -H 'accept: */*'"
+					},
+					"response": []
+				},
+				{
+					"name": "weekly revenue",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/Cart/orders/weekly-revenue",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"Cart",
+								"orders",
+								"weekly-revenue"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://166.1.227.102:7011/api/Cart/orders/weekly-revenue' \\\r\n  -H 'accept: */*'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/Product",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"Product"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://166.1.227.102:7011/api/Product' \\\r\n  -H 'accept: */*'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delivery",
+			"item": [
+				{
+					"name": "Delivery",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/Cart/orders",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"Cart",
+								"orders"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://166.1.227.102:7011/api/Cart/orders' \\\r\n  -H 'accept: */*'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Discount Code",
+			"item": [
+				{
+					"name": "DiscountCode",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clinic Info",
+			"item": [
+				{
+					"name": "https://166.1.227.102:7011/api/ClinicInfo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://166.1.227.102:7011/api/ClinicInfo",
+							"protocol": "https",
+							"host": [
+								"166",
+								"1",
+								"227",
+								"202"
+							],
+							"port": "7011",
+							"path": [
+								"api",
+								"ClinicInfo"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://166.1.227.102:7011/api/ClinicInfo' \\\r\n  -H 'accept: */*'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": []
+		}
+	]
+}

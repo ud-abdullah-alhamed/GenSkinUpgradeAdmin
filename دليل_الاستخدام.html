@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل استخدام لوحة التحكم</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fff;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-top: 1.5em;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5em;
+        }
+        h2 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.3em;
+        }
+        ul {
+            padding-right: 20px;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        .img-container {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #fcfcfc;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 2rem 0;
+        }
+        strong {
+            color: #e74c3c;
+        }
+        @media print {
+            body {
+                padding: 0;
+            }
+            .img-container {
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>دليل استخدام لوحة التحكم (Admin Panel)</h1><br> هاد الدليل رح يشرحلك كيف تستخدم لوحة التحكم للمشروع تبعك خطوة بخطوة،عشان تكون الأمور واضحة وسهلة.<br><br><hr><br><h2>1. تسجيل الدخول (Login)</h2><br><strong>رابط المشروع:</strong> <a href="http://166.1.227.210:3000/" target="_blank">http://166.1.227.210:3000/</a><br><br><strong>بيانات الدخول:</strong><br><ul><li><strong>الإيميل (Email):</strong> <code>admin@admin.com</code></li><br><li><strong>الباسورد (Password):</strong> <code>admin@123</code></li><br></ul>أول ما تفتح الموقع، رح تطلعلك شاشة تسجيل الدخول. عشان تفوت عالسيستم:<br>1. دخل الإيميل تبعك في خانة <strong>Email Address</strong>.<br>2. دخل الباسورد في خانة <strong>Password</strong>.<br>3. اكبس على زر <strong>Sign In</strong>.<br><br><div class="img-container"><img src="screenshots/login_screen.png" alt="شاشة تسجيل الدخول" /></div><br><br><hr><br><h2>2. الشاشة الرئيسية (Dashboard)</h2><br>بس تفوت، رح تلاقي بوجهك الشاشة الرئيسية (Dashboard). هاي الشاشة بتعطيك الزبدة عن شغلك:<br><ul><li><strong>Revenue</strong>: قديش مطلع مصاري إجمالي.</li><br><li><strong>Orders</strong>: كم طلب وصلك لحد الآن.</li><br><li><strong>Customers</strong>: عدد الزبائن المسجلين عندك.</li><br><li><strong>Avg Order Value</strong>: متوسط قيمة الطلب الواحد.</li><br></ul>وكمان بتشوف جدول بآخر 5 طلبات وصلتك عشان تضل متابع أول بأول.<br><br><div class="img-container"><img src="screenshots/dashboard.png" alt="الشاشة الرئيسية" /></div><br><br><hr><br><h2>3. التحليلات (Analytics)</h2><br>صفحة <strong>Analytics</strong> بتعطيك نظرة أعمق على أداء مشروعك:<br><ul><li><strong>Sales Trend</strong>: رسم بياني بوضحلك كيف المبيعات طالعة أو نازلة مع الوقت.</li><br><li><strong>Orders by Status</strong>: مخطط دائري بفرجيك توزيع الطلبات حسب حالتها (واصل، ملغي، قيد الانتظار).</li><br><li>وإحصائيات عامة زي المبيعات الكلية وعدد الزبائن.</li><br></ul><div class="img-container"><img src="screenshots/analytics.png" alt="شاشة التحليلات" /></div><br><br><hr><br><h2>4. إدارة الطلبات (Orders)</h2><br>من القائمة اللي عالجنب، اكبس على <strong>Orders</strong>. هون بتلاقي كل الطلبات اللي انعملت عالموقع.<br><br><h3>كيف تتصرف مع الطلبات:</h3><ul><li><strong>الفلترة</strong>: بتقدر تفرز الطلبات حسب التاريخ (من - إلى) أو حسب حالة الطلب (Pending, Delivered, etc.).</li><br><li><strong>البحث</strong>: في خانة بحث بتقدر تكتب فيها اسم الزبون أو رقم الطلب عشان تلاقيه بسرعة.</li><br><li><strong>الإجراءات (Actions)</strong>:</li><br></ul>    - <strong>View</strong>: بتشوف تفاصيل الطلب كاملة (شو طلب بالزبط، عنوانه، إلخ).<br>    - <strong>Edit</strong>: إذا بدك تعدل شي عالطلب.<br>    - <strong>Delete</strong>: إذا بدك تحذف الطلب من السيستم.<br><br><div class="img-container"><img src="screenshots/orders_page.png" alt="شاشة الطلبات" /></div><br><br><hr><br><h2>4. إدارة الزبائن (Customers)</h2><br>عشان تشوف مين مسجل عندك وتدير حساباتهم، روح على <strong>Customers</strong> من القائمة.<br><br><h3>كيف تضيف زبون جديد (Add New Customer):</h3>هاي النقطة اللي طلبتها بالزبط. عشان تضيف زبون جديد يدوياً:<br>1. اكبس على زر <strong>+ Add Customer</strong> الموجود فوق الجدول.<br>2. رح تطلعلك شاشة صغيرة (Modal).<br>3. عبي البيانات المطلوبة:<br>    - <strong>Name</strong>: اسم الزبون.<br>    - <strong>Email</strong>: إيميله.<br>    - <strong>Phone</strong>: رقم تلفونه.<br>4. بس تخلص، اكبس <strong>Save Customer</strong>.<br><br><div class="img-container"><img src="screenshots/add_customer_modal.png" alt="شاشة إضافة زبون" /></div><br><br>وكمان بتقدر تعدل بيانات أي زبون أو تحذفه من الأزرار اللي جمب اسمه بالجدول.<br><br><hr><br><h2>5. المنتجات (Products)</h2><br>من صفحة <strong>Products</strong>، بتقدر تتحكم بكلشي بتبيعه.<br><ul><li><strong>إضافة منتج</strong>: اكبس <strong>+ Add Product</strong>، عبي اسم المنتج، سعره، الوصف، وحط صورته، واختار الفئة (Category).</li><br><li><strong>تعديل/حذف</strong>: زي باقي الصفحات، بتقدر تعدل السعر أو تحذف المنتج إذا بطل متوفر.</li><br></ul><div class="img-container"><img src="screenshots/products_page.png" alt="شاشة المنتجات" /></div><br><br><hr><br><h2>6. إعدادات التوصيل (Delivery)</h2><br>بصفحة <strong>Delivery</strong>، بتحدد المناطق اللي بتوصل إلها وقديش رسوم التوصيل.<br><ul><li>بتقدر تضيف خيار توصيل جديد، تحدد المنطقة (Area)، وقديش الرسوم (Fees).</li><br><li>هاد الحكي بساعدك لما الزبون يطلب، يعرف قديش رح يدفع توصيل.</li><br></ul><div class="img-container"><img src="screenshots/delivery_page.png" alt="شاشة التوصيل" /></div><br><br><hr><br><h2>7. الخصومات (Discounts)</h2><br>بدك تعمل عروض؟ روح على <strong>Discounts</strong>.<br><ul><li>اكبس <strong>+ Add Discount Code</strong>.</li><br><li>اكتب الكود (مثلاً: `RAMADAN2025`).</li><br><li>حدد نسبة الخصم (مثلاً 10%) أو مبلغ ثابت.</li><br><li>حدد تاريخ انتهاء الخصم عشان يوقف لحاله.</li><br></ul><div class="img-container"><img src="screenshots/discounts_page.png" alt="شاشة الخصومات" /></div><br><br><hr><br><h2>9. الإعلانات (Ads)</h2><br>هاي الصفحة عشان تحط بنرات إعلانية تطلع بالواجهة للزبائن (Ads/Banners).<br><ul><li>بترفع الصورة وبتحط عنوان للإعلان، وبتفعله (Active) أو بتوقفه.</li><br></ul><div class="img-container"><img src="screenshots/ads_page.png" alt="شاشة الإعلانات" /></div><br><br><hr><br><h2>10. معلومات العيادة (Clinic Info)</h2><br>آخر اشي بالقائمة <strong>Clinic Info</strong>. هاي الصفحة عشان تحط معلومات التواصل تبعتك:<br><ul><li>اسم العيادة/المتجر.</li><br><li>العنوان.</li><br><li>رقم التلفون.</li><br><li>الإيميل.</li><br></ul>هاي المعلومات رح تظهر للناس عشان يقدروا يتواصلوا معك.<br><br><div class="img-container"><img src="screenshots/clinic_info.png" alt="شاشة معلومات العيادة" /></div><br><br><hr><br><h2>11. الإعدادات (Settings)</h2><br>بصفحة <strong>Settings</strong>، بتقدر تغير معلومات الشركة الأساسية:<br><ul><li><strong>Company Name</strong>: اسم الشركة.</li><br><li><strong>Email Address</strong>: الإيميل الرسمي.</li><br><li><strong>Phone Number</strong>: رقم الهاتف.</li><br><li><strong>Business Address</strong>: العنوان.</li><br></ul>هاي المعلومات ممكن تنعكس بالفواتير أو بالفوتر (Footer) حسب تصميم الموقع.<br><br><div class="img-container"><img src="screenshots/settings_page.png" alt="شاشة الإعدادات" /></div><br><br><hr><br><strong>خلاصة:</strong><br>الموقع مصمم يكون سهل ومباشر. القائمة اللي عاليسار هي وسيلتك لتتنقل بين كل هاي الأمور. أي تعديل بتعمله هون، بينعكس فوراً عند الزبائن.<br><br>إذا واجهت أي مشكلة أو "Error"، تذكر إنه في رسائل تنبيه بتطلعلك بالزاوية (Notifications) بتقلك شو صار (نجحت العملية أو فشلت).<br><br>بالتوفيق يا رب!<br>
+</body>
+</html>
