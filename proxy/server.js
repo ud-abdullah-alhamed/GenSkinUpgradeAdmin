@@ -164,6 +164,16 @@ app.use('/api/Product/filter-by-category', createProxyMiddleware({
   onProxyReq: injectApiKey
 }));
 
+// Why target + '/api' AND pathRewrite '^/api -> '':
+//   When you mount middleware at app.use('/api', ...), Express strips
+//   the '/api' prefix from req.url before the middleware runs. So a
+//   browser request to '/api/User/login' becomes '/User/login' inside
+//   this handler. Without compensating, the URL forwarded to the backend
+//   would be 'https://host:7011/User/login' — missing /api, which the
+//   .NET routing won't match. We restore the prefix by baking it into
+//   the target. The defensive pathRewrite makes the intent explicit
+//   even on http-proxy-middleware versions where mount-stripping behaves
+//   differently.
 app.use('/api', createProxyMiddleware({
   target: cfg.API_HOST + '/api',
   changeOrigin: true,
