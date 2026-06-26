@@ -1,0 +1,23 @@
+{
+  "_README": [
+    "Copy this file to proxy/config.json and fill the REAL secrets.",
+    "config.json is gitignored — config.example.json is the template.",
+    "Switch between environments by changing the 'active' field.",
+    "Env vars (API_HOST, API_KEY, IMAGE_HOST) still override if config.json is absent."
+  ],
+
+  "active": "staging",
+
+  "profiles": {
+    "staging": {
+      "API_HOST":   "https://166.1.227.202:7011",
+      "API_KEY":    "REPLACE_WITH_STAGING_OTP_API_KEY",
+      "IMAGE_HOST": "http://166.1.227.102"
+    },
+    "production": {
+      "API_HOST":   "https://166.1.227.102:7011",
+      "API_KEY":    "REPLACE_WITH_PRODUCTION_OTP_API_KEY",
+      "IMAGE_HOST": "http://166.1.227.102"
+    }
+  }
+}

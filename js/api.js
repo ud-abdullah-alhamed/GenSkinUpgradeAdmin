@@ -28,7 +28,7 @@
 (function () {
   'use strict';
 
-  const BASE = '/api';
+  const BASE = window.APP_CONFIG.API_BASE;
   const ACCESS_TOKEN_KEY  = 'authToken';                 // legacy key reused
   const REFRESH_TOKEN_KEY = 'refreshToken';              // new
   const ACCESS_EXPIRES_KEY = 'accessExpiresAtUtc';       // new

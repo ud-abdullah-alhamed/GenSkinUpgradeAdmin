@@ -1,24 +1,5 @@
 (function(){
-  const APP_CONFIG = {
-    API_BASE: '/api',
-    UPLOAD_BASE: 'http://166.1.227.102/uploads/',
-    DEFAULT_TIME: 'AM',
-    PAGE_SIZE: 10,
-    CHIP_VARIANTS: {
-      'product-category': 'gray',
-      'product-test-category': 'gray',
-      'product-gender': 'blue',
-      'product-test-gender': 'blue',
-      'product-skin-type': 'orange',
-      'product-test-skin-type': 'orange',
-      'product-time': 'yellow',
-      'product-test-time': 'yellow',
-      'product-type': 'blue',
-      'product-test-type': 'blue',
-      'product-drugstore': 'blue',
-      'product-test-drugstore': 'blue'
-    }
-  };
+  const APP_CONFIG = window.APP_CONFIG;
 
   const state = {
     orders: [], customers: [], products: [], productTestProducts: [], categories: [], delivery: [], discountCodes: [], clinic: [],
@@ -1030,12 +1011,8 @@ async function checkAndSendNotification(orderId, status, originalOrder){
     return finalUrl;
   }
   function getUploadsBaseUrl(forceAbsolute){
-    // User requested absolute base: http://166.1.227.102/uploads
-    const absoluteBase = 'http://166.1.227.102/uploads';
+    const absoluteBase = APP_CONFIG.UPLOAD_BASE.replace(/\/$/, '');
     if(forceAbsolute) return absoluteBase;
-    
-    // Use relative path to leverage the proxy for local display if needed, 
-    // but the user specifically wants absolute URLs in the API payload.
     return '/uploads';
   }
   function resolveDisplayUrl(url){
