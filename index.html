@@ -1073,8 +1073,8 @@
                         </div>
                         <div class="table-wrapper">
                             <table>
-                                <thead><tr><th>Time (UTC)</th><th>Admin</th><th>Action</th><th>Entity</th><th>Entity Id</th><th>IP</th></tr></thead>
-                                <tbody id="audit-admin-actions-body"><tr><td colspan="6">Loading…</td></tr></tbody>
+                                <thead><tr><th>Time (UTC)</th><th>Admin</th><th>Action</th><th>Entity</th><th>Entity Id</th><th>IP</th><th>Changes</th></tr></thead>
+                                <tbody id="audit-admin-actions-body"><tr><td colspan="7">Loading…</td></tr></tbody>
                             </table>
                         </div>
                     </div>
@@ -2256,6 +2256,53 @@
         <div class="form-actions">
             <button type="button" class="btn btn-outline" onclick="closeModal('confirm-modal')">Cancel</button>
             <button type="button" class="btn btn-primary" id="confirm-modal-btn">Confirm</button>
+        </div>
+    </div>
+
+    <!-- Phase 5 audit — view Before/After JSON for a single AdminAction row -->
+    <div class="modal" id="audit-action-modal" style="max-width:900px">
+        <div class="modal-header">
+            <h3 class="modal-title" id="audit-action-modal-title">Admin action</h3>
+        </div>
+        <div id="audit-action-modal-meta"
+             style="display:flex;flex-wrap:wrap;gap:1rem;padding:0.75rem 1rem;background:var(--gray-50);
+                    border:1px solid var(--gray-100);border-radius:0.5rem;font-size:0.85rem;margin-bottom:1rem">
+        </div>
+        <div id="audit-action-modal-summary"
+             style="margin-bottom:0.5rem;font-size:0.85rem;color:var(--gray-600)"></div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div>
+                <div style="font-weight:600;font-size:0.8rem;color:var(--gray-600);
+                            text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.4rem">Before</div>
+                <pre id="audit-action-modal-before"
+                     style="background:#FEF2F2;border:1px solid #FECACA;color:#7F1D1D;
+                            padding:0.75rem;border-radius:0.5rem;max-height:420px;overflow:auto;
+                            font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+                            font-size:0.75rem;white-space:pre-wrap;word-break:break-word"></pre>
+            </div>
+            <div>
+                <div style="font-weight:600;font-size:0.8rem;color:var(--gray-600);
+                            text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.4rem">After</div>
+                <pre id="audit-action-modal-after"
+                     style="background:#F0FDF4;border:1px solid #BBF7D0;color:#14532D;
+                            padding:0.75rem;border-radius:0.5rem;max-height:420px;overflow:auto;
+                            font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+                            font-size:0.75rem;white-space:pre-wrap;word-break:break-word"></pre>
+            </div>
+        </div>
+
+        <details style="margin-top:1rem">
+            <summary style="cursor:pointer;font-size:0.85rem;color:var(--gray-600)">Diff (changed fields only)</summary>
+            <pre id="audit-action-modal-diff"
+                 style="background:var(--gray-50);border:1px solid var(--gray-100);padding:0.75rem;
+                        border-radius:0.5rem;max-height:320px;overflow:auto;
+                        font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+                        font-size:0.75rem;white-space:pre-wrap"></pre>
+        </details>
+
+        <div class="form-actions" style="margin-top:1rem">
+            <button type="button" class="btn btn-outline" onclick="closeModal('audit-action-modal')">Close</button>
         </div>
     </div>
 

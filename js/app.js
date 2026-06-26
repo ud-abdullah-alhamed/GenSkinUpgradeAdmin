@@ -5869,6 +5869,89 @@ async function checkAndSendNotification(orderId, status, originalOrder){
   function setText(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
   function clip(s, n) { s = String(s ?? ''); return s.length > n ? s.slice(0, n) + '…' : s; }
 
+  // Cache for the most recent admin actions page so the View modal can
+  // look up Before/After JSON without re-querying.
+  let _auditActionsCache = [];
+
+  function tryParseJson(s) {
+    if (s === null || s === undefined || s === '') return null;
+    if (typeof s === 'object') return s;
+    try { return JSON.parse(s); } catch { return s; }
+  }
+  function prettyJson(v) {
+    if (v === null || v === undefined) return '';
+    if (typeof v === 'string') return v;            // server returned non-JSON
+    try { return JSON.stringify(v, null, 2); }
+    catch { return String(v); }
+  }
+  /**
+   * Compute a per-field diff between two parsed objects. Returns a plain
+   * string per field that differs:
+   *   field: <old>  →  <new>
+   * For fields that only exist on one side, the other shows as ∅.
+   */
+  function jsonDiff(before, after) {
+    const lines = [];
+    const b = (before && typeof before === 'object') ? before : {};
+    const a = (after  && typeof after  === 'object') ? after  : {};
+    const keys = Array.from(new Set([...Object.keys(b), ...Object.keys(a)])).sort();
+    const fmt = v => v === undefined ? '∅' : JSON.stringify(v);
+    for (const k of keys) {
+      const bv = b[k], av = a[k];
+      if (JSON.stringify(bv) !== JSON.stringify(av)) {
+        lines.push(`${k}:  ${fmt(bv)}  →  ${fmt(av)}`);
+      }
+    }
+    return lines.length ? lines.join('\n') : '(no field differences)';
+  }
+
+  /**
+   * Open the audit-action modal for a single row. Row data comes from the
+   * in-memory cache (_auditActionsCache) populated when the table renders.
+   */
+  function openAuditActionModal(id) {
+    const row = _auditActionsCache.find(r => Number(r.id) === Number(id));
+    if (!row) {
+      showNotification && showNotification('error', 'Action not found in cache — refresh and try again.');
+      return;
+    }
+
+    const before = tryParseJson(row.beforeJson);
+    const after  = tryParseJson(row.afterJson);
+
+    // ---- title ----
+    const title = `${row.action || '(action)'} — ${row.entityType || ''}${row.entityId ? ' #' + row.entityId : ''}`;
+    setText('audit-action-modal-title', title);
+
+    // ---- meta (time / admin / IP / UA) ----
+    const metaHtml = `
+      <div><strong>Time (UTC):</strong> ${esc(fmtTime(row.timestamp))}</div>
+      <div><strong>Admin UserId:</strong> ${esc(row.adminUserId)}</div>
+      <div><strong>IP:</strong> ${esc(row.ipAddress || '—')}</div>
+      <div title="${esc(row.userAgent || '')}"><strong>UA:</strong> ${esc(clip(row.userAgent || '—', 60))}</div>
+    `;
+    const metaEl = document.getElementById('audit-action-modal-meta');
+    if (metaEl) metaEl.innerHTML = metaHtml;
+
+    // ---- summary (which side is meaningful for this state) ----
+    let summary = '';
+    if (before === null && after !== null)       summary = 'CREATE — new row was inserted. After shows the persisted state.';
+    else if (before !== null && after === null)  summary = 'DELETE — row was removed. Before shows the state at the moment of deletion.';
+    else if (before !== null && after !== null)  summary = 'UPDATE — both snapshots present. See the Diff section for changed fields only.';
+    else                                          summary = 'No payload captured.';
+    setText('audit-action-modal-summary', summary);
+
+    // ---- Before / After / Diff panes ----
+    setText('audit-action-modal-before',
+      before === null ? '(no Before — this row was newly created)' : prettyJson(before));
+    setText('audit-action-modal-after',
+      after  === null ? '(no After — this row was deleted)'        : prettyJson(after));
+    setText('audit-action-modal-diff', jsonDiff(before, after));
+
+    openModal('audit-action-modal');
+  }
+  window.openAuditActionModal = openAuditActionModal;
+
   async function loadSecurityAudit() {
     // Default placeholders
     setText('audit-stat-fails',   '…');
@@ -5931,21 +6014,32 @@ async function checkAndSendNotification(orderId, status, originalOrder){
       }
 
       // --- Admin actions table ---
+      // Cache full rows so the View modal can show Before/After without
+      // re-querying. Coerce ids to Number for safe lookups.
+      _auditActionsCache = (adminActions || []).map(r => ({ ...r, id: Number(r.id) }));
       const aaBody = document.getElementById('audit-admin-actions-body');
       if (aaBody) {
-        if (!adminActions || !adminActions.length) {
-          aaBody.innerHTML = '<tr><td colspan="6" style="color:var(--gray-500)">No admin actions captured yet. Make an admin write (create/update a brand, etc.) to see rows here.</td></tr>';
+        if (!_auditActionsCache.length) {
+          aaBody.innerHTML = '<tr><td colspan="7" style="color:var(--gray-500)">No admin actions captured yet. Make an admin write (create/update a brand, etc.) to see rows here.</td></tr>';
         } else {
-          aaBody.innerHTML = adminActions.map(a => `
-            <tr>
-              <td>${esc(fmtTime(a.timestamp))}</td>
-              <td>${esc(a.adminUserId)}</td>
-              <td>${esc(a.action)}</td>
-              <td>${esc(a.entityType)}</td>
-              <td>${esc(a.entityId || '')}</td>
-              <td>${esc(a.ipAddress || '')}</td>
-            </tr>
-          `).join('');
+          aaBody.innerHTML = _auditActionsCache.map(a => {
+            const hasPayload = (a.beforeJson != null && a.beforeJson !== '') ||
+                               (a.afterJson  != null && a.afterJson  !== '');
+            const viewBtn = hasPayload
+              ? `<button class="btn btn-outline" style="padding:4px 10px;font-size:0.75rem" onclick="openAuditActionModal(${a.id})">View</button>`
+              : `<span style="color:var(--gray-400);font-size:0.75rem">no payload</span>`;
+            return `
+              <tr>
+                <td>${esc(fmtTime(a.timestamp))}</td>
+                <td>${esc(a.adminUserId)}</td>
+                <td>${esc(a.action)}</td>
+                <td>${esc(a.entityType)}</td>
+                <td>${esc(a.entityId || '')}</td>
+                <td>${esc(a.ipAddress || '')}</td>
+                <td>${viewBtn}</td>
+              </tr>
+            `;
+          }).join('');
         }
       }
 
