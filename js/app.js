@@ -374,6 +374,8 @@ async function checkAndSendNotification(orderId, status, originalOrder){
         if(id === 'ads') loadAds();
         if(id === 'support-service') loadSupportService();
         if(id === 'analytics') renderCharts();
+        if(id === 'security-audit') loadSecurityAudit();
+        if(id === 'performance') loadPerformance();
       }
     }
   window.showView = showView;
@@ -5848,5 +5850,236 @@ async function checkAndSendNotification(orderId, status, originalOrder){
       showNotification('error', err?.message || 'Failed to clear discount');
     }
   });
+
+  // ============================================================
+  // Phase 5 admin dashboards — Security Audit + Performance
+  // ============================================================
+
+  function fmtTime(iso) {
+    if (!iso) return '—';
+    try { return new Date(iso).toISOString().replace('T', ' ').slice(0, 19); }
+    catch { return String(iso); }
+  }
+  function esc(s) {
+    if (s === undefined || s === null) return '';
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+  function setText(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
+  function clip(s, n) { s = String(s ?? ''); return s.length > n ? s.slice(0, n) + '…' : s; }
+
+  async function loadSecurityAudit() {
+    // Default placeholders
+    setText('audit-stat-fails',   '…');
+    setText('audit-stat-locks',   '…');
+    setText('audit-stat-success', '…');
+    setText('audit-stat-reuse',   '…');
+
+    try {
+      const [failedLogins, summary7d, adminActions] = await Promise.all([
+        api.audit.failedLogins(1, 50).catch(e => { console.error('failedLogins', e); return []; }),
+        api.audit.securityEventsSummary(7).catch(e => { console.error('summary', e); return { results: [] }; }),
+        api.audit.adminActions({ page: 1, pageSize: 25 }).catch(e => { console.error('adminActions', e); return []; }),
+      ]);
+
+      // --- Stat cards ---
+      // Failed logins last 24h — count rows we got (capped at limit=50)
+      setText('audit-stat-fails', failedLogins.length);
+
+      // Pull lockout / success / reuse counts out of the 7-day summary
+      const rowsSum = (summary7d && summary7d.results) || [];
+      const findCount = (type) => rowsSum
+        .filter(r => r.eventType === type)
+        .reduce((a, r) => a + (r.count || 0), 0);
+      setText('audit-stat-locks',   findCount('login.locked'));
+      setText('audit-stat-success', findCount('login.success'));
+      setText('audit-stat-reuse',   findCount('refresh.reuse_detected'));
+
+      // --- Failed-logins table ---
+      const flBody = document.getElementById('audit-failed-logins-body');
+      if (flBody) {
+        if (!failedLogins.length) {
+          flBody.innerHTML = '<tr><td colspan="5" style="color:var(--gray-500)">No failed logins in the last 24h.</td></tr>';
+        } else {
+          flBody.innerHTML = failedLogins.map(e => `
+            <tr>
+              <td>${esc(fmtTime(e.timestamp))}</td>
+              <td>${e.userId == null ? '<em style="color:var(--gray-400)">none</em>' : esc(e.userId)}</td>
+              <td>${esc(e.ipAddress || '')}</td>
+              <td title="${esc(e.userAgent || '')}">${esc(clip(e.userAgent || '', 40))}</td>
+              <td>${esc(e.detail || '')}</td>
+            </tr>
+          `).join('');
+        }
+      }
+
+      // --- Summary table ---
+      const sBody = document.getElementById('audit-summary-body');
+      if (sBody) {
+        if (!rowsSum.length) {
+          sBody.innerHTML = '<tr><td colspan="3" style="color:var(--gray-500)">No security events in the last 7 days.</td></tr>';
+        } else {
+          sBody.innerHTML = rowsSum.map(r => `
+            <tr>
+              <td>${esc(r.eventType)}</td>
+              <td>${esc(r.outcome)}</td>
+              <td><strong>${esc(r.count)}</strong></td>
+            </tr>
+          `).join('');
+        }
+      }
+
+      // --- Admin actions table ---
+      const aaBody = document.getElementById('audit-admin-actions-body');
+      if (aaBody) {
+        if (!adminActions || !adminActions.length) {
+          aaBody.innerHTML = '<tr><td colspan="6" style="color:var(--gray-500)">No admin actions captured yet. Make an admin write (create/update a brand, etc.) to see rows here.</td></tr>';
+        } else {
+          aaBody.innerHTML = adminActions.map(a => `
+            <tr>
+              <td>${esc(fmtTime(a.timestamp))}</td>
+              <td>${esc(a.adminUserId)}</td>
+              <td>${esc(a.action)}</td>
+              <td>${esc(a.entityType)}</td>
+              <td>${esc(a.entityId || '')}</td>
+              <td>${esc(a.ipAddress || '')}</td>
+            </tr>
+          `).join('');
+        }
+      }
+
+    } catch (err) {
+      console.error('[SecurityAudit] load failed', err);
+      showNotification && showNotification('error', 'Failed to load Security Audit: ' + (err.message || err));
+    }
+  }
+  window.loadSecurityAudit = loadSecurityAudit;
+
+  async function loadPerformance() {
+    setText('hm-stat-requests', '…');
+    setText('hm-stat-users',    '…');
+    setText('hm-stat-avgms',    '…');
+    setText('hm-stat-autherr',  '…');
+
+    try {
+      const [daily, topRoutes, slow, authErrors, active] = await Promise.all([
+        api.heatmap.summaryDaily(7).catch(e => { console.error('daily', e); return { results: [] }; }),
+        api.heatmap.topRoutes(7, 20).catch(e => { console.error('topRoutes', e); return { results: [] }; }),
+        api.heatmap.slowestRoutes(7, 10, 20).catch(e => { console.error('slow', e); return { results: [] }; }),
+        api.heatmap.authErrors(24).catch(e => { console.error('auth', e); return { results: [] }; }),
+        api.heatmap.activeUsers(7, 50).catch(e => { console.error('active', e); return { results: [] }; }),
+      ]);
+
+      const dailyRows = (daily && daily.results) || [];
+      // --- Stat cards ---
+      const totalReq = dailyRows.reduce((a, r) => a + (r.requests || 0), 0);
+      const totalUsers = dailyRows.reduce((a, r) => a + (r.unique || 0), 0);
+      const avgMs = totalReq ? Math.round(
+        dailyRows.reduce((a, r) => a + (r.avgMs || 0) * (r.requests || 0), 0) / totalReq
+      ) : 0;
+      setText('hm-stat-requests', totalReq.toLocaleString());
+      setText('hm-stat-users',    totalUsers.toLocaleString());
+      setText('hm-stat-avgms',    avgMs);
+
+      const authErrRows = (authErrors && authErrors.results) || [];
+      const totalAuthErr = authErrRows.reduce((a, r) => a + (r.count || 0), 0);
+      setText('hm-stat-autherr', totalAuthErr.toLocaleString());
+
+      // --- Daily table ---
+      const dBody = document.getElementById('hm-daily-body');
+      if (dBody) {
+        if (!dailyRows.length) {
+          dBody.innerHTML = '<tr><td colspan="4" style="color:var(--gray-500)">No traffic captured yet.</td></tr>';
+        } else {
+          dBody.innerHTML = dailyRows.map(r => `
+            <tr>
+              <td>${esc((r.day || '').slice(0, 10))}</td>
+              <td>${(r.requests || 0).toLocaleString()}</td>
+              <td>${(r.unique || 0).toLocaleString()}</td>
+              <td>${Math.round(r.avgMs || 0)}</td>
+            </tr>
+          `).join('');
+        }
+      }
+
+      // --- Top routes table ---
+      const topRows = (topRoutes && topRoutes.results) || [];
+      const tBody = document.getElementById('hm-top-body');
+      if (tBody) {
+        if (!topRows.length) {
+          tBody.innerHTML = '<tr><td colspan="5" style="color:var(--gray-500)">No data.</td></tr>';
+        } else {
+          tBody.innerHTML = topRows.map(r => `
+            <tr>
+              <td>${esc(r.route)}</td>
+              <td>${(r.hits || 0).toLocaleString()}</td>
+              <td>${Math.round(r.avgMs || 0)}</td>
+              <td>${r.maxMs || 0}</td>
+              <td>${r.errors || 0}</td>
+            </tr>
+          `).join('');
+        }
+      }
+
+      // --- Slowest routes table ---
+      const slowRows = (slow && slow.results) || [];
+      const sBody = document.getElementById('hm-slow-body');
+      if (sBody) {
+        if (!slowRows.length) {
+          sBody.innerHTML = '<tr><td colspan="4" style="color:var(--gray-500)">No routes with ≥10 hits in the last 7 days.</td></tr>';
+        } else {
+          sBody.innerHTML = slowRows.map(r => `
+            <tr>
+              <td>${esc(r.route)}</td>
+              <td>${(r.hits || 0).toLocaleString()}</td>
+              <td><strong>${Math.round(r.avgMs || 0)}</strong></td>
+              <td>${r.maxMs || 0}</td>
+            </tr>
+          `).join('');
+        }
+      }
+
+      // --- Auth errors table ---
+      const eBody = document.getElementById('hm-autherr-body');
+      if (eBody) {
+        if (!authErrRows.length) {
+          eBody.innerHTML = '<tr><td colspan="4" style="color:var(--gray-500)">No 401s in the last 24h. ✓</td></tr>';
+        } else {
+          eBody.innerHTML = authErrRows.map(r => `
+            <tr>
+              <td>${esc(r.route)}</td>
+              <td>${(r.count || 0).toLocaleString()}</td>
+              <td>${r.uniqueIps || 0}</td>
+              <td>${esc(fmtTime(r.latest))}</td>
+            </tr>
+          `).join('');
+        }
+      }
+
+      // --- Active users table ---
+      const activeRows = (active && active.results) || [];
+      const aBody = document.getElementById('hm-active-body');
+      if (aBody) {
+        if (!activeRows.length) {
+          aBody.innerHTML = '<tr><td colspan="4" style="color:var(--gray-500)">No authenticated traffic yet.</td></tr>';
+        } else {
+          aBody.innerHTML = activeRows.map(r => `
+            <tr>
+              <td>${esc(r.userId)}</td>
+              <td>${(r.requests || 0).toLocaleString()}</td>
+              <td>${esc(fmtTime(r.firstSeen))}</td>
+              <td>${esc(fmtTime(r.lastSeen))}</td>
+            </tr>
+          `).join('');
+        }
+      }
+
+    } catch (err) {
+      console.error('[Performance] load failed', err);
+      showNotification && showNotification('error', 'Failed to load Performance: ' + (err.message || err));
+    }
+  }
+  window.loadPerformance = loadPerformance;
 
 })();

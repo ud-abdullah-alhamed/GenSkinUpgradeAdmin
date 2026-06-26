@@ -6,17 +6,22 @@
     "Env vars (API_HOST, API_KEY, IMAGE_HOST) still override if config.json is absent."
   ],
 
-  "active": "staging",
+  "active": "local",
 
   "profiles": {
+    "local": {
+      "API_HOST":   "https://localhost:7011",
+      "API_KEY":    "cd4ofbRllhUcGGVuBPc4987KCc1ZzfP/LiEVpRi/ISxn6wKc0htbLNJbcm9rfXf9",
+      "IMAGE_HOST": "http://localhost"
+    },
     "staging": {
       "API_HOST":   "https://166.1.227.202:7011",
-      "API_KEY":    "REPLACE_WITH_STAGING_OTP_API_KEY",
+      "API_KEY":    "cd4ofbRllhUcGGVuBPc4987KCc1ZzfP/LiEVpRi/ISxn6wKc0htbLNJbcm9rfXf9",
       "IMAGE_HOST": "http://166.1.227.102"
     },
     "production": {
       "API_HOST":   "https://166.1.227.102:7011",
-      "API_KEY":    "REPLACE_WITH_PRODUCTION_OTP_API_KEY",
+      "API_KEY":    "cd4ofbRllhUcGGVuBPc4987KCc1ZzfP/LiEVpRi/ISxn6wKc0htbLNJbcm9rfXf9",
       "IMAGE_HOST": "http://166.1.227.102"
     }
   }

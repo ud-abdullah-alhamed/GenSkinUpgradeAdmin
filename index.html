@@ -123,6 +123,20 @@
                     </svg>
                     Settings
                 </div>
+                <div class="nav-item" onclick="showView('security-audit')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    Security Audit
+                </div>
+                <div class="nav-item" onclick="showView('performance')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    Performance
+                </div>
             </nav>
 
             <div class="nav-footer">
@@ -1006,6 +1020,133 @@
                                     <span class="toggle-slider"></span>
                                 </label>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================
+                 Phase 5 admin dashboards — Security Audit (genskin_audit)
+                 ============================================================ -->
+            <div id="security-audit-view" class="view">
+                <header class="content-header">
+                    <h1 class="page-title">Security Audit</h1>
+                    <p class="page-subtitle">SecurityEvent + AdminAction rows from the genskin_audit database. Read-only.</p>
+                </header>
+                <div class="content-body">
+                    <div class="stats-grid" id="audit-stats">
+                        <div class="stats-card"><div class="stats-header"><div class="stats-title">Failed logins — 24h</div></div><div class="stats-value" id="audit-stat-fails">—</div></div>
+                        <div class="stats-card"><div class="stats-header"><div class="stats-title">Lockout trips — 24h</div></div><div class="stats-value" id="audit-stat-locks">—</div></div>
+                        <div class="stats-card"><div class="stats-header"><div class="stats-title">Login success — 7d</div></div><div class="stats-value" id="audit-stat-success">—</div></div>
+                        <div class="stats-card"><div class="stats-header"><div class="stats-title">Refresh reuse — 7d</div></div><div class="stats-value" id="audit-stat-reuse">—</div></div>
+                    </div>
+
+                    <div class="table-card" style="margin-top:1.5rem">
+                        <div class="table-header">
+                            <div class="table-title">Recent failed logins (24h)</div>
+                            <div class="table-actions"><button class="btn-secondary" onclick="loadSecurityAudit()">Refresh</button></div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead><tr><th>Time (UTC)</th><th>UserId</th><th>IP</th><th>User-Agent</th><th>Detail</th></tr></thead>
+                                <tbody id="audit-failed-logins-body"><tr><td colspan="5">Loading…</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="table-card" style="margin-top:1.5rem">
+                        <div class="table-header">
+                            <div class="table-title">Security event summary (7 days)</div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead><tr><th>Event type</th><th>Outcome</th><th>Count</th></tr></thead>
+                                <tbody id="audit-summary-body"><tr><td colspan="3">Loading…</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="table-card" style="margin-top:1.5rem">
+                        <div class="table-header">
+                            <div class="table-title">Recent admin actions</div>
+                            <div class="table-actions" style="color:var(--gray-500);font-size:var(--text-xs)">Auto-captured by EF interceptor (R6.3)</div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead><tr><th>Time (UTC)</th><th>Admin</th><th>Action</th><th>Entity</th><th>Entity Id</th><th>IP</th></tr></thead>
+                                <tbody id="audit-admin-actions-body"><tr><td colspan="6">Loading…</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================
+                 Phase 5 admin dashboards — Performance / Heatmap (genskin_heatmap)
+                 ============================================================ -->
+            <div id="performance-view" class="view">
+                <header class="content-header">
+                    <h1 class="page-title">Performance</h1>
+                    <p class="page-subtitle">UserActivity rows from the genskin_heatmap database. Read-only.</p>
+                </header>
+                <div class="content-body">
+                    <div class="stats-grid" id="hm-stats">
+                        <div class="stats-card"><div class="stats-header"><div class="stats-title">Requests — 7d</div></div><div class="stats-value" id="hm-stat-requests">—</div></div>
+                        <div class="stats-card"><div class="stats-header"><div class="stats-title">Unique users — 7d</div></div><div class="stats-value" id="hm-stat-users">—</div></div>
+                        <div class="stats-card"><div class="stats-header"><div class="stats-title">Avg duration (ms) — 7d</div></div><div class="stats-value" id="hm-stat-avgms">—</div></div>
+                        <div class="stats-card"><div class="stats-header"><div class="stats-title">Auth errors — 24h</div></div><div class="stats-value" id="hm-stat-autherr">—</div></div>
+                    </div>
+
+                    <div class="table-card" style="margin-top:1.5rem">
+                        <div class="table-header">
+                            <div class="table-title">Daily summary (7 days)</div>
+                            <div class="table-actions"><button class="btn-secondary" onclick="loadPerformance()">Refresh</button></div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead><tr><th>Day</th><th>Requests</th><th>Unique users</th><th>Avg ms</th></tr></thead>
+                                <tbody id="hm-daily-body"><tr><td colspan="4">Loading…</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="table-card" style="margin-top:1.5rem">
+                        <div class="table-header"><div class="table-title">Top routes (7 days)</div></div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead><tr><th>Route</th><th>Hits</th><th>Avg ms</th><th>Max ms</th><th>Errors</th></tr></thead>
+                                <tbody id="hm-top-body"><tr><td colspan="5">Loading…</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="table-card" style="margin-top:1.5rem">
+                        <div class="table-header"><div class="table-title">Slowest routes (7 days, ≥10 hits)</div></div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead><tr><th>Route</th><th>Hits</th><th>Avg ms</th><th>Max ms</th></tr></thead>
+                                <tbody id="hm-slow-body"><tr><td colspan="4">Loading…</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="table-card" style="margin-top:1.5rem">
+                        <div class="table-header"><div class="table-title">Auth errors by route (24h)</div></div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead><tr><th>Route</th><th>401 count</th><th>Unique IPs</th><th>Latest (UTC)</th></tr></thead>
+                                <tbody id="hm-autherr-body"><tr><td colspan="4">Loading…</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="table-card" style="margin-top:1.5rem">
+                        <div class="table-header"><div class="table-title">Most active users (7 days)</div></div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead><tr><th>UserId</th><th>Requests</th><th>First seen</th><th>Last seen</th></tr></thead>
+                                <tbody id="hm-active-body"><tr><td colspan="4">Loading…</td></tr></tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
