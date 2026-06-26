@@ -143,7 +143,11 @@ const injectApiKey = (proxyReq, req) => {
   if (cfg.API_KEY) {
     proxyReq.setHeader('X-Api-Key', cfg.API_KEY);
   }
-  console.log('Proxying:', req.method, req.url, '->', cfg.API_HOST + req.url);
+  // req.originalUrl preserves the full '/api/...' path the browser sent.
+  // req.url is mount-stripped by Express, which made earlier log lines
+  // confusing.
+  console.log('Proxying:', req.method, req.originalUrl,
+              '->', cfg.API_HOST + req.originalUrl);
 };
 
 // Special handlers kept from production for behavior parity. All three
